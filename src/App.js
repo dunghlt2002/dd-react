@@ -9,7 +9,7 @@ import HomeScreen from "./components/home.component";
 // import AddUser from "./components/add-user.component";
 // import UserProfile from "./components/profile.component";
 // import SigninScreen from "./components/signin.component";
-// import { userLogoutFetch } from './actions/userActions';
+import { userLogoutFetch } from './actions/userActions';
 // import ImportCSV from "./components/import-csv.component";
 import UnderConstruction from "./components/z-under-construction.component";
 // import TradingList from "./components/trading-list.component";
