@@ -142,14 +142,14 @@ class App extends Component {
           <div className="container">
             <Switch>
               <Route path="/" exact={true} component={HomeScreen} />
-              <Route exact path={["/signin"]} component={SigninScreen} />
+              {/* <Route exact path={["/signin"]} component={SigninScreen} />
               <Route exact path={"/users"} component={UsersList} />
               <Route exact path={"/adduser"} component={AddUser} />
               <Route exact path={"/userProfile/:id"} component={UserProfile} />
               <Route exact path={"/importcsv"} component={ImportCSV} />
               <Route exact path={"/dailystocks/:currentPage" } component={TradingList} />
               <Route exact path="/tradedetail/:slug.:id.html" component={TradeDetail}/>
-              <Route exact path={"/editTrade/:id"} component={EditTrade} />
+              <Route exact path={"/editTrade/:id"} component={EditTrade} /> */}
               <Route exact path={"/underconstruction"} component={UnderConstruction} />
             </Switch>
           </div>
