@@ -5,7 +5,7 @@ import MyEmail from './email.component'
 import { renderEmail } from 'react-html-email'
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-
+import myUtility from "../utils/utility";
 
 class AddUser extends Component {
   constructor(props) {
