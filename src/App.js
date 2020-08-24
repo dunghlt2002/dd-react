@@ -147,9 +147,9 @@ class App extends Component {
               <Route exact path={"/adduser"} component={AddUser} />
               <Route exact path={"/userProfile/:id"} component={UserProfile} />
               <Route exact path={"/importcsv"} component={ImportCSV} />
-              {/* <Route exact path={"/dailystocks/:currentPage" } component={TradingList} />
+              <Route exact path={"/dailystocks/:currentPage" } component={TradingList} />
               <Route exact path="/tradedetail/:slug.:id.html" component={TradeDetail}/>
-              <Route exact path={"/editTrade/:id"} component={EditTrade} /> */}
+              <Route exact path={"/editTrade/:id"} component={EditTrade} />
               <Route exact path={"/underconstruction"} component={UnderConstruction} />
             </Switch>
           </div>
