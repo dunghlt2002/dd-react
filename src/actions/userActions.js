@@ -35,7 +35,8 @@ const userLoginFetch = (user, password) => async (dispatch) => {
   dispatch({ type: 'USER_SIGNIN_REQUEST', payload: {user, password} });
   try {
     // const { data } = await Axios.post("/api/users/signin", { email, password });
-    return await fetch("http://localhost:8080/api/signin", {
+    // return await fetch("http://localhost:8080/api/signin", {
+    return await fetch("https://dd-dailystock-node.herokuapp.com/api/signin", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
