@@ -21,18 +21,18 @@ class userDataService {
 
   get(id) {
     console.log('lay 1 user ' + id);
-    return axios.get(API_URL + `/user/${id}`);
+    return axios.get(API_URL + `user/${id}`);
   }
 
   create(data) {
-    return axios.post(API_URL + `/users`, data);
+    return axios.post(API_URL + `users`, data);
   }
 
   update(users_id, data) {
     const userInfo = Cookie.getJSON('userInfo') || null;
     const token = userInfo.token;
     console.log('user in service:  ' + JSON.stringify(data));
-    return axios.put(API_URL + `/users/${users_id}`, data,
+    return axios.put(API_URL + `users/${users_id}`, data,
     { headers: {'Authorization': `Bearer ${token}` }}
     );
   }
@@ -47,11 +47,11 @@ class userDataService {
 
   findByKeyword(search_keyword) {
     console.log('hi search name');
-    return axios.get(API_URL + `/users?search_keyword=${search_keyword}`);
+    return axios.get(API_URL + `users?search_keyword=${search_keyword}`);
   }
 
   findByusers_name(users_name) {
-    return axios.get(API_URL + `/users?users_name=${users_name}`);
+    return axios.get(API_URL + `users?users_name=${users_name}`);
   }
 
   // deleteAll() {

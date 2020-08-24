@@ -12,7 +12,7 @@ class dailystockDataService {
     // return axios.delete(API_URL + `/dailystocks/${transaction_id}`,
     // { headers: {'Authorization': `Bearer ${token}` }}
     // );
-    return axios.delete(API_URL + `/dailystock/${transaction_id}`);
+    return axios.delete(API_URL + `dailystock/${transaction_id}`);
   }
 
   getAll(currentPage,search_keyword) {
@@ -21,7 +21,7 @@ class dailystockDataService {
   }
 
   getAllSymbol() {
-    return axios.get(API_URL + `/symbolcodelist`);
+    return axios.get(API_URL + `symbolcodelist`);
   }
 
   get(id) {
@@ -45,7 +45,7 @@ class dailystockDataService {
     // const userInfo = Cookie.getJSON('userInfo') || null;
     // const token = userInfo.token;
     console.log('user in service:  ' + JSON.stringify(data));
-    return axios.put(API_URL + `/dailystock/${transaction_id}`, data);
+    return axios.put(API_URL + `dailystock/${transaction_id}`, data);
     // return axios.put(API_URL + `/dailystock/${transaction_id}`, data,
     // { headers: {'Authorization': `Bearer ${token}` }}
     // );
@@ -53,11 +53,11 @@ class dailystockDataService {
   
   findByKeyword(search_keyword) {
     console.log('hi search name');
-    return axios.get(API_URL + `/users?search_keyword=${search_keyword}`);
+    return axios.get(API_URL + `users?search_keyword=${search_keyword}`);
   }
 
   findByusers_name(users_name) {
-    return axios.get(API_URL + `/users?users_name=${users_name}`);
+    return axios.get(API_URL + `users?users_name=${users_name}`);
   }
 
   // deleteAll() {

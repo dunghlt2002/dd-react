@@ -19,7 +19,7 @@ class AddUser extends Component {
     this.newUser = this.newUser.bind(this);
 
     this.state = {
-      API_IMG: process.env.REACT_APP_API_URL,
+      // API_IMG: process.env.REACT_APP_API_IMG,
       id: null,
       user: "Cheo",
       email: "dunghlt2002@gmail.com", 
