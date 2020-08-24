@@ -12,9 +12,9 @@ import SigninScreen from "./components/signin.component";
 import { userLogoutFetch } from './actions/userActions';
 import ImportCSV from "./components/import-csv.component";
 import UnderConstruction from "./components/z-under-construction.component";
-// import TradingList from "./components/trading-list.component";
-// import TradeDetail from "./components/trade-detail.component";
-// import EditTrade from "./components/edit-trade.component";
+import TradingList from "./components/trading-list.component";
+import TradeDetail from "./components/trade-detail.component";
+import EditTrade from "./components/edit-trade.component";
 
 class App extends Component {
   constructor(props) {
@@ -64,7 +64,7 @@ class App extends Component {
             <button onClick={this.openMenu}>
                   &#9776;
             </button>
-            <a href="/underconstruction/">DD Daily Stock</a>
+            <a href="/underconstruction/">DD Daily Task</a>
           </div>
           <div className="header-links">
 
