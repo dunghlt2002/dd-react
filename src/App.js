@@ -5,12 +5,12 @@ import './App.css';
 import { connect } from 'react-redux';
 
 import HomeScreen from "./components/home.component"; 
-// import UsersList from "./components/user-list.component";
-// import AddUser from "./components/add-user.component";
-// import UserProfile from "./components/profile.component";
-// import SigninScreen from "./components/signin.component";
+import UsersList from "./components/user-list.component";
+import AddUser from "./components/add-user.component";
+import UserProfile from "./components/profile.component";
+import SigninScreen from "./components/signin.component";
 import { userLogoutFetch } from './actions/userActions';
-// import ImportCSV from "./components/import-csv.component";
+import ImportCSV from "./components/import-csv.component";
 import UnderConstruction from "./components/z-under-construction.component";
 // import TradingList from "./components/trading-list.component";
 // import TradeDetail from "./components/trade-detail.component";
@@ -142,12 +142,12 @@ class App extends Component {
           <div className="container">
             <Switch>
               <Route path="/" exact={true} component={HomeScreen} />
-              {/* <Route exact path={["/signin"]} component={SigninScreen} />
+              <Route exact path={["/signin"]} component={SigninScreen} />
               <Route exact path={"/users"} component={UsersList} />
               <Route exact path={"/adduser"} component={AddUser} />
               <Route exact path={"/userProfile/:id"} component={UserProfile} />
               <Route exact path={"/importcsv"} component={ImportCSV} />
-              <Route exact path={"/dailystocks/:currentPage" } component={TradingList} />
+              {/* <Route exact path={"/dailystocks/:currentPage" } component={TradingList} />
               <Route exact path="/tradedetail/:slug.:id.html" component={TradeDetail}/>
               <Route exact path={"/editTrade/:id"} component={EditTrade} /> */}
               <Route exact path={"/underconstruction"} component={UnderConstruction} />
