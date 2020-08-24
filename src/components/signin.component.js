@@ -9,12 +9,12 @@ class SigninScreen extends Component {
       super(props);
       this.state = {
         redirect: '',
-          loading: null,
-          error: null,
-          userInfo: null,
-          user:'',
-          email:'',
-          password:''
+        loading: null,
+        error: null,
+        userInfo: null,
+        user:'',
+        email:'',
+        password:''
       }
   }
   

@@ -19,6 +19,7 @@ class AddUser extends Component {
     this.newUser = this.newUser.bind(this);
 
     this.state = {
+      API_IMG: process.env.REACT_APP_API_URL,
       id: null,
       user: "Cheo",
       email: "dunghlt2002@gmail.com", 
@@ -118,7 +119,7 @@ class AddUser extends Component {
     
             // axios({
             //     method: "POST", 
-            //     url:"http://localhost:8080/send", 
+            //     url: "http://localhost:8080/send", 
             //     data: {
             // name: this.state.user,
             // email: this.state.email,

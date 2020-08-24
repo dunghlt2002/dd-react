@@ -20,6 +20,7 @@ class UserProfile extends Component {
       // this.deleteUser = this.deleteUser.bind(this);
 
       this.state = {
+          API_IMG: process.env.REACT_APP_API_URL,
           loading: null,
           userInfo: null,
           currentUser: {
@@ -254,7 +255,7 @@ class UserProfile extends Component {
               <h2>User Profile  
               </h2>
               {/* avatars folder is the same level of app folder */}
-              <img className="avatar-image" src={"https://dd-dailystock-node.herokuapp.com/" + currentUser.avatar} alt={currentUser.avatar}></img>
+              <img className="avatar-image" src={this.state.API_IMG + currentUser.avatar} alt={currentUser.avatar}></img>
               
             </li>
             <li>
@@ -274,7 +275,7 @@ class UserProfile extends Component {
             <li className="form-group">
                 <label htmlFor="products_price">Avatar</label>
                 {/* https://dd-dailystock-node.herokuapp.com/ */}
-                <img className="avatar-image" src={"https://dd-dailystock-node.herokuapp.com/" + this.state.avatar} alt={this.state.avatar}></img>
+                <img className="avatar-image" src={this.state.API_IMG + this.state.avatar} alt={this.state.avatar}></img>
                 <input className="avatarfile" type="file" onChange={this.fileSelectedHandler}></input>
                 <input
                   type="text"

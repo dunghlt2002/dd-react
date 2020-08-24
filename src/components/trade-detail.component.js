@@ -6,6 +6,7 @@ class TradeDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            API_IMG: process.env.REACT_APP_API_URL,
             currentTrade:null ,
             title:'',
             timeframe:'',
@@ -109,12 +110,12 @@ class TradeDetail extends Component {
                                     </div>
                                     <div className="col-3">
                                         {/* https://dd-dailystock-node.herokuapp.com/ */}
-                                        <img width="80%" src={"https://dd-dailystock-node.herokuapp.com/uploads/" + this.state.currentTrade.s_image} className="img"  alt="" />
+                                        <img width="80%" src={this.state.API_IMG + "uploads/" + this.state.currentTrade.s_image} className="img"  alt="" />
                                         {/* <img width="80%" src={"http://localhost:8080/uploads/" + this.state.currentTrade.s_image} className="img"  alt="" /> */}
                                     </div>
                                 </div>
                                 <br></br>
-                                <img width="100%" src={"https://dd-dailystock-node.herokuapp.com/uploads/" + this.state.currentTrade.b_image} className="img"  alt="" />
+                                <img width="100%" src={this.state.API_IMG + "uploads/" + this.state.currentTrade.b_image} className="img"  alt="" />
 
                             </div>    
                         </div>

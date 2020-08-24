@@ -174,3 +174,6 @@ const mapStateToProps = (state, ownProps) => {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+// const API_URL = 'http://localhost:8080/api/';       // for local
+// const API_URL = process.env.REACT_APP_API_URL

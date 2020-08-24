@@ -1,11 +1,8 @@
 import axios from 'axios';
-// import authHeader from './auth-header';
-// import http from "../http-common";
 import Cookie from 'js-cookie';
 
-// thay vi nhot trong http-common dem ra day cho de nhin va chinh header
-// const API_URL = 'http://localhost:8080/api/';
-const API_URL =  'https://dd-dailystock-node.herokuapp.com/api/'
+const API_URL = process.env.REACT_APP_API_URL
+//const API_URL =  'https://dd-dailystock-node.herokuapp.com/api/'
 
 class userDataService {
   
