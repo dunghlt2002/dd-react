@@ -19,11 +19,11 @@ class tradingList extends Component {
       masterSymbols: [],
       topFive: 5,   // lay 5 symbol hot nhat
       data:null ,
-      title:'' ,
+      title:'Go LONG ' ,
       timeframe:'3 min',
       createddate:'',
       symbolcode:'',
-      buyshort:'1',
+      buyshort: null,
       qty:'100',
       entrypoint:'0',
       exitpoint:'0',
@@ -171,9 +171,7 @@ renderAddForm = () => {
   return (
     <div >
         <form className="card-body jumbotron card-border">
-            <div className="form-group">
-                <input onChange={(event)=> this.isChange(event)} type="text" className="form-control" name="title" id="title" aria-describedby="name_text" value={this.state.title} placeholder="Enter Title" />
-            </div>
+
             <div className="form-inline">
                 <div className="form-group">
                   <label for="entry">Symbol: </label>
@@ -185,16 +183,7 @@ renderAddForm = () => {
                 </div>
             </div>
             
-            <div className="form-group">
-                <div className="form-check-inline">
-                      <label className="form-label"><strong>Action:</strong>
-                      <input onChange={(event)=> this.isActionChange(event)} value="1" type="radio" className="form-check-input" name="buyshort" defaultChecked="1" />BUY
-                      <input onChange={(event)=> this.isActionChange(event)} value="2" type="radio" className="form-check-input" name="buyshort" />SHORT
-                      </label>
-                </div>
-            </div>
-
-            <div className="form-inline ">
+            <div className="form-inline">
                 <div className="form-group">
                   <label for="entry">Entry: </label>
                   <input onChange={(event)=> this.isChange(event)} type="text" className="form-inline" name="entrypoint" id="entrypoint" aria-describedby="name_text" placeholder="Entry price" />
@@ -205,14 +194,29 @@ renderAddForm = () => {
                 </div>
             </div>
 
+            <div className="form-group">
+                <div className="form-check-inline">
+                      <label className="form-label"><strong>Action:</strong>
+                      {/* defaultChecked="1"  */}
+                      <input onChange={(event)=> this.isActionChange(event)} value="1" type="radio" className="form-check-input" name="buyshort" />BUY
+                      <input onChange={(event)=> this.isActionChange(event)} value="2" type="radio" className="form-check-input" name="buyshort" />SHORT
+                      </label>
+                </div>
+            </div>
+
+            <div className="form group">
+                <input onChange={(event)=> this.isChange(event)} type="text" className="form-control" name="title" id="title" aria-describedby="name_text" value={this.state.title} placeholder="Enter Title" />
+            </div>
+
+
             <div class="form-group">
                 Select time frame:
                 <select id="timeframe" name="timeframe" onChange={(event)=> this.isChange(event)} >
                     {/* <option >Select Timeframe</option> */}
-                    <option selected={this.state.timeframe === "3 min"} value="5 min">3 min</option>
+                    <option selected={this.state.timeframe === "3 min"} value="3 min">3 min</option>
                     <option selected={this.state.timeframe === "5 min"} value="5 min">5 min</option>
                     <option selected={this.state.timeframe === "15 min"} value="15 min">15 min</option>
-                    <option value="1 D">1 D</option>
+                    <option selected={this.state.timeframe === "1 D"} value="1 D">1 D</option>
                 </select>
             </div>
 
@@ -307,6 +311,17 @@ renderAddForm = () => {
     this.setState({
         [name]:value
     });
+    if (name === "symbolcode") {
+      this.setState({
+        title: value
+      });
+    }
+    
+    if (name === "entrypoint") {
+      this.setState({
+        title: myUtility.translateBuyShort(this.state.buyshort)[0] + " " + this.state.symbolcode + " at: " + value
+      });
+    }
     console.log('doi tuong : ' + name);
     console.log('gia tri : ' + value);
     
@@ -315,8 +330,6 @@ renderAddForm = () => {
   isActionChange = (event) => {
     var name = event.target.name;
     var value = event.target.value;
-    //console.log('doi tuong : ' + name);
-    //console.log('gia tri : ' + value);
     
     this.setState({
         [name]:value
@@ -325,6 +338,7 @@ renderAddForm = () => {
     if(value == 1) {
         // BUY action
         this.setState({
+          title: "Buy " + this.state.symbolcode + " at " + this.state.entrypoint,
           stocolor: '1',
           rsicolor: '1',
           macdcolor: '1',
@@ -333,6 +347,7 @@ renderAddForm = () => {
     } else {
         // SHORT action
         this.setState({
+          title: "Short " + this.state.symbolcode + " at " + this.state.entrypoint,
           stocolor: '2',
           rsicolor: '2',
           macdcolor: '2',
@@ -405,6 +420,7 @@ renderAddForm = () => {
         s_image: s_image === null? ss_image:s_image,
         createdby: createdby
       };
+    console.log('timeframe ' + this.state.timeframe);
     
         dailystockDataService.create(data)
           .then(response => {
@@ -431,6 +447,8 @@ renderAddForm = () => {
           .catch(e => {
             console.log(e);
           });
+          this.setState({showForm: !this.state.showForm})
+          window.location="/dailystocks/1?searchKeyword="
       
   }
 
@@ -446,11 +464,8 @@ renderAddForm = () => {
             </div>
           </header>
       
-              {/* <div className="col-xs-8"> */}
-                  {/* We want to show the form if the state is true */}
-                  {this.state.showAddButton && this.renderAddButton()}
-              {/* </div> */}
-                
+              {/* We want to show the form if the state is true */}
+              {this.state.showAddButton && this.renderAddButton()}
                 
               {/* Bat dau phan trading list chinh */}
               <div className="container-fluid col-12">

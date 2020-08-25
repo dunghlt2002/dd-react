@@ -181,7 +181,7 @@ class Trade extends Component {
         {/* Title va cac thong tin quan trong header */}
             <div className="float-left">
                 <div>
-                    <Link to={"/tradedetail/" + this.chuyenDoiURL(this.props.title) + "." + this.props.tradeId + ".html"}>{this.props.title + ' on ' + this.props.symbolcode + ', ' + this.props.timeframe}</Link>
+                    <Link to={"/tradedetail/" + this.chuyenDoiURL(this.props.title) + "." + this.props.tradeId + ".html"}>{this.props.title + " on " + this.props.timeframe + " timeframe."}</Link>
                 </div>
                 <div>
                     <b className=" float-right" style={{color: this.translateBuyShort(this.props.buyshort)[1]}}>

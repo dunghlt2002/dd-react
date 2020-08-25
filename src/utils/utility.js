@@ -3,6 +3,19 @@ import axios from 'axios';
 const API_URL = process.env.REACT_APP_API_URL
 
 class myUtility  {
+
+    translateBuyShort = (color) =>
+    {
+        var strBSColor = [];
+        if (color == 1) {
+            strBSColor = ["Buy","Green"]
+        } else if (color == 2) {
+            strBSColor = ["Short","Red"]
+        }
+        
+        return strBSColor
+
+    }
     
     uploadFiles(folder, myFile) {
 

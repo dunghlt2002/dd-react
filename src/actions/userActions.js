@@ -1,12 +1,14 @@
 import Axios from "axios";
 import Cookie from 'js-cookie';
-// import http from "../http-common";
+
 
 // import {
 //   USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS,
 //   USER_SIGNIN_FAIL, USER_REGISTER_REQUEST,
 //   USER_REGISTER_SUCCESS, USER_REGISTER_FAIL, USER_LOGOUT, USER_UPDATE_REQUEST, USER_UPDATE_SUCCESS, USER_UPDATE_FAIL
 // } from "../constants/userConstants";
+
+const API_URL = process.env.REACT_APP_API_URL
 
 // viet lai theo kieu redux mapDispatchtoProps
 const getProfileFetch = () => {
@@ -36,7 +38,7 @@ const userLoginFetch = (user, password) => async (dispatch) => {
   try {
     // const { data } = await Axios.post("/api/users/signin", { email, password });
     // return await fetch("http://localhost:8080/api/signin", {
-    return await fetch("https://dd-dailystock-node.herokuapp.com/api/signin", {
+    return await fetch(API_URL + "signin", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -70,6 +72,3 @@ const userLoginFetch = (user, password) => async (dispatch) => {
 }
 
 export { userLoginFetch, userLogoutFetch, getProfileFetch };
-// export { register, update, userLoginFetch, userLogoutFetch, getProfileFetch };
-// export { signin, register, logout, update, userLoginFetch };
-
