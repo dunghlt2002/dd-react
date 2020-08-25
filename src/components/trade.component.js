@@ -7,7 +7,7 @@ class Trade extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            API_IMG: process.env.REACT_APP_API_URL,
+            API_IMG: process.env.REACT_APP_API_IMG,
             data:{} ,
             id:'',
             selectedFile:'none',
