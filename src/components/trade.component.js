@@ -7,7 +7,7 @@ class Trade extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            API_IMG: process.env.REACT_APP_API_IMG,
+            API_URL: process.env.REACT_APP_URL,
             data:{} ,
             id:'',
             selectedFile:'none',
@@ -174,7 +174,7 @@ class Trade extends Component {
             <div className="float-left col-3">
                 <Link to={"/tradedetail/" + this.chuyenDoiURL(this.props.title) + "." + this.props.tradeId + ".html"}>
                     {/* uploads folder is the same level of app folder */}
-                    <img className="card-img-top" src={this.state.API_IMG + "uploads/" + this.props.s_image} alt={this.props.s_image}/></Link>
+                    <img className="card-img-top" src={this.state.API_URL + "uploads/" + this.props.s_image} alt={this.props.s_image}/></Link>
                     {/* <img className="card-img-top" src={"http://localhost:8080/uploads/" + this.props.s_image} alt={this.props.s_image}/></Link> */}
             </div>
     
