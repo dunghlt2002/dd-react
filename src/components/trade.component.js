@@ -148,10 +148,11 @@ class Trade extends Component {
 
     //delete function
     deleteTrade = (e) => {
-        console.log('vo delete func   :  ' + this.props.tradeId);
+        const id = this.props.tradeId;
+        console.log('vo delete func   :  ' + id);
         // const users_id = this.state.currentUser.id;
 
-        dailystockDataService.delete(this.props.tradeId)
+        dailystockDataService.delete(id)
         .then(response => {
             console.log(response.data);
         })

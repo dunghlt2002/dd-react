@@ -66,8 +66,7 @@ class SigninScreen extends Component {
 render() {
   return (
   <div className="form">
-    <form >
-    {/* <form onSubmit={(e) => this.submitHandler(e)}> */}
+    <form onSubmit={(event) => this.submitHandler(event)}>
       <ul className="form-container">
         <li>
           <h2>Sign-In</h2>
