@@ -161,8 +161,8 @@ class Trade extends Component {
         .catch(e => {
             console.log(e);
         });
-        // const redirect = this.props.location.search ? this.props.location.search.split("=")[1] : '/'
-        // this.props.history.push(redirect);   // to sign-in before process cart
+        const redirect = this.props.location.search ? this.props.location.search.split("=")[1] : '/'
+        this.props.history.push(redirect);   // to sign-in before process cart
         
         
         // tam dung
