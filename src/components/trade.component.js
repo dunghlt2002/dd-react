@@ -86,7 +86,7 @@ class Trade extends Component {
         return (
         <div>
             <div className="btn-group float-right">
-                <button type="button" onClick={(event) => { if (window.confirm('Are you sure you wish to delete this item?')) this.deleteTrade(event) } } className="btn btn-block btn-danger">
+                <button type="button" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) this.deleteTrade(this.props.tradeId) } } className="btn btn-block btn-danger">
                 Delete
                 </button>
             </div>
@@ -147,8 +147,8 @@ class Trade extends Component {
         }
 
     //delete function
-    deleteTrade = (e) => {
-        const id = this.props.tradeId;
+    deleteTrade = (id) => {
+        // const id = this.props.tradeId;
         console.log('vo delete func   :  ' + id);
         // const users_id = this.state.currentUser.id;
 

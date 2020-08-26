@@ -52,7 +52,6 @@ class tradingList extends Component {
     this.fileBigSelectedHandler = this.fileBigSelectedHandler.bind(this);
     this.fileSelectedHandler = this.fileSelectedHandler.bind(this);
     this.isChange = this.isChange.bind(this);
-    this.addTransaction = this.addTransaction.bind(this);
     
   }
   
@@ -270,7 +269,7 @@ renderAddForm = () => {
                 </label>
             </div>
             <div className="card-header">
-              <button type="submit" onClick={(e) => this.addTransaction(e)} className="btn btn-block btn-info">Save Trade Information</button>
+              <button type="reset" onClick={(e) => this.addTransaction(e)} className="btn btn-block btn-info">Save Trade Information</button>
             </div>
 
         </form>
