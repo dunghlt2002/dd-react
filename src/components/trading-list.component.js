@@ -447,8 +447,8 @@ renderAddForm = () => {
           .catch(e => {
             console.log(e);
           });
-          this.setState({showForm: !this.state.showForm})
-          window.location="/dailystocks/1?searchKeyword="
+          // this.setState({showForm: !this.state.showForm})
+          // window.location="/dailystocks/1?searchKeyword="
       
   }
 

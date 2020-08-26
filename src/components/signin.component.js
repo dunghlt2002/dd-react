@@ -66,7 +66,8 @@ class SigninScreen extends Component {
 render() {
   return (
   <div className="form">
-    <form onSubmit={(e) => this.submitHandler(e)}>
+    <form >
+    {/* <form onSubmit={(e) => this.submitHandler(e)}> */}
       <ul className="form-container">
         <li>
           <h2>Sign-In</h2>
@@ -89,10 +90,10 @@ render() {
           </input>
         </li>
         <li>
-          <button type="submit" className="btn btn-primary">Signin</button>
+          <button type="button" className="btn btn-primary" onClick={(event) => this.submitHandler(event)} >Signin</button>
         </li>
         <li>
-          <Link to="/adduser">New to DD Shopping?</Link>
+          <Link to="/adduser">New user? Click here ...</Link>
         </li>
         <li>
           {/* <Link to={redirect === "/" ? "register" : "register?redirect=" + redirect} className="button secondary text-center" >Create your amazona account</Link> */}
