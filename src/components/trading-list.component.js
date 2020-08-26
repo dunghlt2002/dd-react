@@ -52,6 +52,7 @@ class tradingList extends Component {
     this.fileBigSelectedHandler = this.fileBigSelectedHandler.bind(this);
     this.fileSelectedHandler = this.fileSelectedHandler.bind(this);
     this.isChange = this.isChange.bind(this);
+    this.addTransaction = this.addTransaction.bind(this);
     
   }
   
@@ -447,8 +448,8 @@ renderAddForm = () => {
           .catch(e => {
             console.log(e);
           });
-          // this.setState({showForm: !this.state.showForm})
-          // window.location="/dailystocks/1?searchKeyword="
+          this.setState({showForm: !this.state.showForm})
+          window.location="/dailystocks/1?searchKeyword="
       
   }
 
