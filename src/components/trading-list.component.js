@@ -52,6 +52,8 @@ class tradingList extends Component {
     this.fileBigSelectedHandler = this.fileBigSelectedHandler.bind(this);
     this.fileSelectedHandler = this.fileSelectedHandler.bind(this);
     this.isChange = this.isChange.bind(this);
+    this.addTransaction = this.addTransaction.bind(this);
+    
     
   }
   

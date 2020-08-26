@@ -86,7 +86,8 @@ class Trade extends Component {
         return (
         <div>
             <div className="btn-group float-right">
-                <button type="button" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) this.deleteTrade(this.props.tradeId) } } className="btn btn-block btn-danger">
+            {/* <button type="button" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) this.deleteTrade(this.props.tradeId) } } className="btn btn-block btn-danger"> */}
+                <button type="button" onClick={() =>  this.deleteTrade(this.props.tradeId)  } className="btn btn-block btn-danger">
                 Delete
                 </button>
             </div>
