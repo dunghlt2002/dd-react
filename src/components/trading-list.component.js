@@ -404,7 +404,6 @@ renderAddForm = () => {
   
       // Xu ly add du lieu vao db
       var {title,createddate,timeframe,symbolcode,qty,entrypoint,exitpoint,buyshort,stocolor,rsicolor,macdcolor,macd_htf,b_image,s_image,createdby} = this.state;
-      // var dataTemp = [];      
       var data = {
         title: title,
         createddate: createddate,
@@ -422,19 +421,12 @@ renderAddForm = () => {
         s_image: s_image === null? ss_image:s_image,
         createdby: createdby
       };
-    console.log('timeframe ' + this.state.timeframe);
+    
+        console.log('timeframe ' + this.state.timeframe);
+        console.log('timeframe ' + JSON.stringify(data));
     
         dailystockDataService.create(data)
           .then(response => {
-            // this.setState({
-            //   id: response.data.id,
-            //   user: response.data.user,
-            //   avatar: response.data.avatar,
-            //   email: response.data.email,
-            //   password: response.data.password,
-            //   isadmin: response.data.isadmin,
-            //   submitted: true
-            // });
             console.log('new transaction : ' + JSON.stringify(response.data));
             this.setState({
               message: "New transction has just created sucessfully!",
@@ -449,8 +441,9 @@ renderAddForm = () => {
           .catch(e => {
             console.log(e);
           });
-          this.setState({showForm: !this.state.showForm})
-          window.location="/dailystocks/1?searchKeyword="
+          
+          // this.setState({showForm: !this.state.showForm})
+          // window.location="/dailystocks/1?searchKeyword="
       
   }
 
