@@ -16,6 +16,8 @@ class SigninScreen extends Component {
         email:'',
         password:''
       }
+      
+      this.submitHandler = this.submitHandler.bind(this);
   }
   
   isChange = (event) => {

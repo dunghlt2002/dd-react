@@ -269,7 +269,7 @@ renderAddForm = () => {
                 </label>
             </div>
             <div className="card-header">
-              <button type="reset" onClick={(e) => this.addTransaction(e)} className="btn btn-block btn-info">Save Trade Information</button>
+              <button type="submit" onClick={(e) => this.addTransaction(e)} className="btn btn-block btn-info">Save Trade Information</button>
             </div>
 
         </form>
