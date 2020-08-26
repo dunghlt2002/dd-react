@@ -175,8 +175,8 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 
-// REACT_APP_API_URL = localhost:8080/api/
-// REACT_APP_URL = localhost:8080/
+// REACT_APP_API_URL = http://localhost:8080/api/
+// REACT_APP_URL = http://localhost:8080/
 
-//REACT_APP_API_URL = https://dd-dailystock-node.herokuapp.com/api/
+// REACT_APP_API_URL = https://dd-dailystock-node.herokuapp.com/api/
 // REACT_APP_URL = https://dd-dailystock-node.herokuapp.com/

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link,NavLink, Redirect} from "react-router-dom";
 import dailystockDataService from "../services/dailystock.service";
-import EditTrade from './edit-trade.component';
+
 
 class Trade extends Component {
     constructor(props) {
@@ -55,7 +55,7 @@ class Trade extends Component {
 
 
     // Chuan bi du lieu vao item obj de load vao modal form de edit
-    editTrade = () => {
+    editTradeeee = () => {
         console.log('edit chuan bi');
         
         var item={};
@@ -163,7 +163,10 @@ class Trade extends Component {
         });
         // const redirect = this.props.location.search ? this.props.location.search.split("=")[1] : '/'
         // this.props.history.push(redirect);   // to sign-in before process cart
-        window.location="/dailystocks/1?searchKeyword=";
+        
+        
+        // tam dung
+        // window.location="/dailystocks/1?searchKeyword=";
         
     }
 

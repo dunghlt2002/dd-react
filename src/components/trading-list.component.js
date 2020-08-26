@@ -176,22 +176,22 @@ renderAddForm = () => {
 
             <div className="form-inline">
                 <div className="form-group">
-                  <label for="entry">Symbol: </label>
+                  <label htmlFor="entry">Symbol: </label>
                   <input onChange={(event)=> this.isChange(event)} type="text" className="form-inline" name="symbolcode" id="symbolcode" aria-describedby="name_text" placeholder="Enter stock symbolcode"/>
                 </div>
                 <div className="form-group">
-                <label for="entry">Qty: </label>
+                <label htmlFor="entry">Qty: </label>
                   <input onChange={(event)=> this.isChange(event)} type="text" className="form-inline" name="qty" id="qty" aria-describedby="name_text" placeholder="Enter Quantiy" value={this.state.qty}/>
                 </div>
             </div>
             
             <div className="form-inline">
                 <div className="form-group">
-                  <label for="entry">Entry: </label>
+                  <label htmlFor="entry">Entry: </label>
                   <input onChange={(event)=> this.isChange(event)} type="text" className="form-inline" name="entrypoint" id="entrypoint" aria-describedby="name_text" placeholder="Entry price" />
                 </div>
                 <div className="form-group">
-                  <label for="exit">Exit: </label>
+                  <label htmlFor="exit">Exit: </label>
                   <input onChange={(event)=> this.isChange(event)} type="text" className="form-inline" name="exitpoint" id="exitpoint" aria-describedby="name_text" placeholder="Exit price" />
                 </div>
             </div>
@@ -211,14 +211,14 @@ renderAddForm = () => {
             </div>
 
 
-            <div class="form-group">
+            <div className="form-group">
                 Select time frame:
                 <select id="timeframe" name="timeframe" onChange={(event)=> this.isChange(event)} >
                     {/* <option >Select Timeframe</option> */}
-                    <option selected={this.state.timeframe === "3 min"} value="3 min">3 min</option>
-                    <option selected={this.state.timeframe === "5 min"} value="5 min">5 min</option>
-                    <option selected={this.state.timeframe === "15 min"} value="15 min">15 min</option>
-                    <option selected={this.state.timeframe === "1 D"} value="1 D">1 D</option>
+                    <option defaultValue={this.state.timeframe === "3 min"} value="3 min">3 min</option>
+                    <option defaultValue={this.state.timeframe === "5 min"} value="5 min">5 min</option>
+                    <option defaultValue={this.state.timeframe === "15 min"} value="15 min">15 min</option>
+                    <option defaultValue={this.state.timeframe === "1 D"} value="1 D">1 D</option>
                 </select>
             </div>
 

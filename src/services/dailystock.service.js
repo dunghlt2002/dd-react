@@ -12,6 +12,7 @@ class dailystockDataService {
     // return axios.delete(API_URL + `/dailystocks/${transaction_id}`,
     // { headers: {'Authorization': `Bearer ${token}` }}
     // );
+    console.log('xoa id ' + transaction_id); 
     return axios.delete(API_URL + `dailystock/${transaction_id}`);
   }
 
