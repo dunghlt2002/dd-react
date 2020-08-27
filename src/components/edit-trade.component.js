@@ -8,14 +8,16 @@ class EditTrade extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentTrade: {} ,
-            showForm: false,
-            showAddButton: false,
-            showEditButton: false,
-            showDeleteButton: false,
-            selectedFile: null,
-            selectedBigFile: null,
-            myTag: ''
+          submitted: false,
+          message:null,
+          currentTrade: {} ,
+          showForm: false,
+          showAddButton: false,
+          showEditButton: false,
+          showDeleteButton: false,
+          selectedFile: null,
+          selectedBigFile: null,
+          myTag: ''
         }
 
         this.onChangeTitle = this.onChangeTitle.bind(this);
@@ -62,6 +64,32 @@ class EditTrade extends Component {
       this.props.history.push("/dailystocks/1?searchKeyword=");
     }
 
+
+  //delete function
+  deleteTrade = (e) => {
+          
+    const id = this.state.currentTrade.id;
+    console.log('vo delete func   :  ' + id);
+    // const users_id = this.state.currentUser.id;
+
+    dailystockDataService.delete(id)
+    .then(response => {
+        console.log(response.data);
+        this.setState({
+          message: response.message,
+          submitted: true
+        })
+    })
+    .catch(e => {
+        console.log(e);
+    });
+
+    // tam dung
+    // this.backToTradingList();
+    // window.location="/dailystocks/1?searchKeyword=";
+    
+  }
+
     updateTrade() {
       dailystockDataService.update(
         this.state.currentTrade.id,
@@ -71,8 +99,10 @@ class EditTrade extends Component {
         // Sequelize xong
         console.log('Transaction updated ' + response.data);
         this.setState({
-          message: "Transaction was updated successfully!"
+          message: "Transaction was updated successfully!",
+          submitted: true
         });
+        
 
             // Xu ly tiep phan upload file
             myUtility.uploadFiles("upfileUploads", this.state.selectedFile);
@@ -276,18 +306,6 @@ class EditTrade extends Component {
         });
     }
 
-    onChangeEmail(e) {
-        const email = e.target.value
-        this.setState(function(prevState) {
-            return {
-              currentTrade: {
-                ...prevState.currentTrade,
-                email: email
-              }
-            };
-        });
-    }
-
     translateIndicatorColor = (color) =>
     {
         var strColor = '';
@@ -330,7 +348,16 @@ render() {
               <a href="/dailystocks/1?searchKeyword=">Trading List  ... </a>
               <Link to="/dailystocks/1?searchKeyword=" >Link to Trading List</Link>
             </div>
-            <div className="card-body text-primary">
+
+
+            {this.state.submitted ? (
+              <div className="form-container">
+                <h4>You submitted/deleted successfully!</h4>
+                {this.state.message && <div>{this.state.message}</div>}
+              </div>
+             ) : (
+
+              <div className="card-body text-primary">
                 <div className="row">
                     <div className="col">
                                 <div className="form-group">
@@ -454,6 +481,14 @@ render() {
 
                                 <div className="form-group">
                                     <button type="button" className="btn btn-warning" data-dismiss="modal" onClick={(event) => this.updateTrade(event)}>Save Changes</button>
+
+
+                                    <button type="button" onClick={(e) => { if (window.confirm('Are you sure you wish to delete this item?')) this.deleteTrade(e) } } className="btn btn-danger">
+                                    {/* <button type="button" onClick={() =>  this.deleteTrade(this.props.tradeId)  } className="btn btn-block btn-danger"> */}
+                                    Delete
+                                    </button>
+            
+
                                     <button onClick={(event) => this.backToTradingList(event)} type="button" className="btn btn-danger" data-dismiss="modal">Discard</button>
                                 </div>
 
@@ -461,6 +496,8 @@ render() {
             
                 </div>
             </div>
+              )
+            }
         </div>
     </div>
                 

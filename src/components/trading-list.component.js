@@ -39,7 +39,7 @@ class tradingList extends Component {
       showAddButton: true,
       currentuser:'',
       selectedBigFile:'',
-      addclosebutton:'Add New Record',
+      addclosebutton:'DD Analysis',
       showButton:false,
       postsPerPage:15,
       totalPages: 1,
@@ -151,10 +151,10 @@ class tradingList extends Component {
   onClick () {
       this.setState({showForm: !this.state.showForm})
       console.log('form ' + this.state.showForm);
-      if(this.state.addclosebutton === "Add New Record") {
+      if(this.state.addclosebutton === "DD Analysis") {
         this.setState({addclosebutton: "Close"})
       } else {
-        this.setState({addclosebutton: "Add New Record"})
+        this.setState({addclosebutton: "DD Analysis"})
       }
   }
 
@@ -171,111 +171,32 @@ renderAddButton = () => {
 renderAddForm = () => {
  
   return (
-    <div >
-        <form className="card-body jumbotron card-border">
-
-            <div className="form-inline">
-                <div className="form-group">
-                  <label htmlFor="entry">Symbol: </label>
-                  <input onChange={(event)=> this.isChange(event)} type="text" className="form-inline" name="symbolcode" id="symbolcode" aria-describedby="name_text" placeholder="Enter stock symbolcode"/>
-                </div>
-                <div className="form-group">
-                <label htmlFor="entry">Qty: </label>
-                  <input onChange={(event)=> this.isChange(event)} type="text" className="form-inline" name="qty" id="qty" aria-describedby="name_text" placeholder="Enter Quantiy" value={this.state.qty}/>
-                </div>
-            </div>
-            
-            <div className="form-inline">
-                <div className="form-group">
-                  <label htmlFor="entry">Entry: </label>
-                  <input onChange={(event)=> this.isChange(event)} type="text" className="form-inline" name="entrypoint" id="entrypoint" aria-describedby="name_text" placeholder="Entry price" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="exit">Exit: </label>
-                  <input onChange={(event)=> this.isChange(event)} type="text" className="form-inline" name="exitpoint" id="exitpoint" aria-describedby="name_text" placeholder="Exit price" />
-                </div>
-            </div>
-
-            <div className="form-group">
-                <div className="form-check-inline">
-                      <label className="form-label"><strong>Action:</strong>
-                      {/* defaultChecked="1"  */}
-                      <input onChange={(event)=> this.isActionChange(event)} value="1" type="radio" className="form-check-input" name="buyshort" />BUY
-                      <input onChange={(event)=> this.isActionChange(event)} value="2" type="radio" className="form-check-input" name="buyshort" />SHORT
-                      </label>
-                </div>
-            </div>
-
-            <div className="form group">
-                <input onChange={(event)=> this.isChange(event)} type="text" className="form-control" name="title" id="title" aria-describedby="name_text" value={this.state.title} placeholder="Enter Title" />
-            </div>
-
-
-            <div className="form-group">
-                Select time frame:
-                <select id="timeframe" name="timeframe" onChange={(event)=> this.isChange(event)} >
-                    {/* <option >Select Timeframe</option> */}
-                    <option defaultValue={this.state.timeframe === "3 min"} value="3 min">3 min</option>
-                    <option defaultValue={this.state.timeframe === "5 min"} value="5 min">5 min</option>
-                    <option defaultValue={this.state.timeframe === "15 min"} value="15 min">15 min</option>
-                    <option defaultValue={this.state.timeframe === "1 D"} value="1 D">1 D</option>
-                </select>
-            </div>
-
-            <div className="col">
-                <div className="row">
-                  <div className="form-check-inline">
-                      <label className="label">Stochastic: 
-                      <input color="red" onChange={(event)=> this.isChange(event)} checked={this.state.stocolor === "1"} value="1" type="radio" className="label" name="stocolor"/>Green
-                      <input onChange={(event)=> this.isChange(event)} checked={this.state.stocolor === "2"} value="2" type="radio" className="label" name="stocolor" />Red
-                      <input onChange={(event)=> this.isChange(event)} checked={this.state.stocolor === "3"} value="3" type="radio" className="label" name="stocolor" />None
-                      </label>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="form-check-inline">
-                      <label className="label">RSI: 
-                      <input onChange={(event)=> this.isChange(event)} checked={this.state.rsicolor === "1"} value="1" type="radio" className="label" name="rsicolor" />Green
-                      <input onChange={(event)=> this.isChange(event)} checked={this.state.rsicolor === "2"} value="2" type="radio" className="label" name="rsicolor" />Red
-                      <input onChange={(event)=> this.isChange(event)} checked={this.state.rsicolor === "3"} value="3" type="radio" className="label" name="rsicolor" />None
-                      </label>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="form-check-inline">
-                      <label className="label">MACD: 
-                      <input color="Green" onChange={(event)=> this.isChange(event)} checked={this.state.macdcolor === "1"} value="1" type="radio" className="radio" name="macdcolor"/>Green
-                      <input color="red" onChange={(event)=> this.isChange(event)} checked={this.state.macdcolor === "2"} value="2" type="radio" className="radio" name="macdcolor" />Red
-                      <input color="black" onChange={(event)=> this.isChange(event)} checked={this.state.macdcolor === "3"} value="3" type="radio" className="radio" name="macdcolor" />None
-                      </label>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="form-check-inline">
-                      <label className="label">Macd HTF: 
-                      <input onChange={(event)=> this.isChange(event)} checked={this.state.macd_htf === "1"} value="1" type="radio" className="label" name="macd_htf"/>Green
-                      <input onChange={(event)=> this.isChange(event)} checked={this.state.macd_htf === "2"} value="2" type="radio" className="label" name="macd_htf" />Red
-                      <input onChange={(event)=> this.isChange(event)} checked={this.state.macd_htf === "3"} value="3" type="radio" className="label" name="macd_htf" />None
-                      </label>
-                  </div>
-                </div>
-                  
-            </div>
-
-            <div className="form-group">
-                <label>Small image
-                <input className="s_image" type="file" onChange={(e) => this.fileSelectedHandler(e)}></input>
-                </label>
-                <label>Big image
-                <input className="b_image" type="file" onChange={(e) => this.fileBigSelectedHandler(e)}></input>
-                </label>
-            </div>
-            <div className="card-header">
-              <button type="submit" onClick={(e) => this.addTransaction(e)} className="btn btn-block btn-info">Save Trade Information</button>
-            </div>
-
-        </form>
+    <div className="jumbotron card-border">
         
+        <div>
+        <h2>DD Statistic Analysis</h2>
+          <tr>
+            <td>
+                {this.state.masterSymbols.reverse().map((mastercategory,key) => 
+                <li key={key}>
+                  <a href={'/dailystocks/1?searchKeyword='+ mastercategory.symbolcode}>{mastercategory.symbolcode + " (" + mastercategory.DemNguoc + ")"}</a>
+                </li>
+                )}
+            </td>
+            <td>
+                <h3>Winning Lossing rate</h3>
+                <li >Winning rate: 27.5%</li>
+                <li >Lossing rate: 63.7%</li>
+            </td>
+            <td>
+                <h3>Timeframe summary</h3>
+                <li >Under 60 min: 89.1%</li>
+                <li >Above 60 min: 10.9%</li>
+            </td>
+          </tr>
+        </div>
+          
+                
     </div>
   )
     
@@ -461,18 +382,21 @@ renderAddForm = () => {
       
               {/* We want to show the form if the state is true */}
               {this.state.showAddButton && this.renderAddButton()}
-                
+              <div className="col-divide-header">
+                  Hihihihi - Good Luck,  <Link to="/addtrade">Add New</Link>
+              </div>
               {/* Bat dau phan trading list chinh */}
               <div className="container-fluid col-12">
                   <div className="row">
                     <div className="card border-secondary mb-3 mt-2 col-2">
                       <div>
                       <ul className="list-item">
+                          
                           <li>
                             <a href={'/dailystocks/1?searchKeyword='}>ALL symbols</a>
                           </li>
-                          {this.state.masterSymbols.reverse().map((mastercategory) => 
-                          <li>
+                          {this.state.masterSymbols.reverse().map((mastercategory,key) => 
+                          <li key={key}>
                             <a href={'/dailystocks/1?searchKeyword='+ mastercategory.symbolcode}>{mastercategory.symbolcode + " (" + mastercategory.DemNguoc + ")"}</a>
                           </li>
                           )}
@@ -485,13 +409,14 @@ renderAddForm = () => {
                     <div className="card border-primary mb-3 mt-2 col-10">
                       <div className="col-10">
                         <div className="row">
+                            
                             <div className="col-divide-header">
                               <a href={'/dailystocks/1?searchKeyword='}>ALL </a> or Top 5:
                             </div>
                            
                             <div className="col-divide">
-                                {this.state.masterSymbols.slice(0,this.state.topFive).map((masterFive) => 
-                                    <a href={'/dailystocks/1?searchKeyword='+ masterFive.symbolcode}>{masterFive.symbolcode + "  "}</a>
+                                {this.state.masterSymbols.slice(0,this.state.topFive).map((masterFive, key) => 
+                                    <a key={key} href={'/dailystocks/1?searchKeyword='+ masterFive.symbolcode}>{masterFive.symbolcode + "  "}</a>
                                   )}
                             </div>                            
 

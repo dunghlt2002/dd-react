@@ -15,6 +15,7 @@ import UnderConstruction from "./components/z-under-construction.component";
 import TradingList from "./components/trading-list.component";
 import TradeDetail from "./components/trade-detail.component";
 import EditTrade from "./components/edit-trade.component";
+import AddTrade from "./components/add-dailystock.component";
 
 class App extends Component {
   constructor(props) {
@@ -84,7 +85,7 @@ class App extends Component {
                       // this.getUser(this.props.currUser.userInfo.id);
                      this.props.currUser.userInfo ? <Link to={"/userProfile/" + this.props.currUser.userInfo.id}>Profile: {this.props.currUser.userInfo.user}</Link> : <Link to="/signin">Sign In</Link>
                     }
-                    <Link onClick={this.logoutHandler}>Logout</Link>
+                    <Link to="/" onClick={this.logoutHandler}>Logout</Link>
                   </li>
                   <li>
                     {/* <Link to="/underconstruction">Orders List</Link> */}
@@ -97,10 +98,12 @@ class App extends Component {
                           <Link to="/adduser">Add User</Link>
                         </li>
                         <li>
+                          <Link to="/addtrade">Add Daily Stock Transaction</Link>
+                        </li>
+                        <li>
                           <Link to="/underconstruction">Add Product</Link>
                           <Link to="/underconstruction">Add Customer</Link>
                         </li>
-
                     </div>
                   : null ) : null
                   }
@@ -150,6 +153,7 @@ class App extends Component {
               <Route exact path={"/dailystocks/:currentPage" } component={TradingList} />
               <Route exact path="/tradedetail/:slug.:id.html" component={TradeDetail}/>
               <Route exact path={"/editTrade/:id"} component={EditTrade} />
+              <Route exact path={"/addtrade"} component={AddTrade} />
               <Route exact path={"/underconstruction"} component={UnderConstruction} />
             </Switch>
           </div>

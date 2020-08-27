@@ -14,10 +14,10 @@ class Trade extends Component {
             showForm: false,
             showAddButton: false,
             currentuser:'',
-            showEditButton:false,
+            // showEditButton:false,
             showDeleteButton:false
         }
-        this.deleteTrade = this.deleteTrade.bind(this);
+        // this.deleteTrade = this.deleteTrade.bind(this);
     }
 
     componentWillMount() {
@@ -30,7 +30,7 @@ class Trade extends Component {
         // }
         // if(cu === this.props.createdby) {
             this.setState({
-                showEditButton: true,
+                // showEditButton: true,
                 showDeleteButton: true,
             })
             
@@ -84,21 +84,16 @@ class Trade extends Component {
         // console.log('datatemp ' + datatemp);
 
         return (
-        <div>
-            <div className="btn-group float-right">
-            <button type="button" onClick={(e) => { if (window.confirm('Are you sure you wish to delete this item?')) this.deleteTrade(e) } } className="btn btn-block btn-danger">
-                {/* <button type="button" onClick={() =>  this.deleteTrade(this.props.tradeId)  } className="btn btn-block btn-danger"> */}
-                Delete
-                </button>
-            </div>
-            <div className="btn-group float-right">
-                <Link to={"/editTrade/" + this.props.tradeId}
-                    className="btn btn-block btn-success" > 
-                    Edit
-                </Link>
-            </div>
-        </div>
         
+            <div className="btn-group float-right">
+            
+                <div className="btn-group float-right">
+                    <Link to={"/editTrade/" + this.props.tradeId}
+                        className="btn btn-block btn-success" > 
+                        Edit
+                    </Link>
+                </div>
+            </div>
             
         )
     }
@@ -147,28 +142,7 @@ class Trade extends Component {
 
         }
 
-    //delete function
-    deleteTrade = (e) => {
-        
-        const id = this.props.tradeId;
-        console.log('vo delete func   :  ' + id);
-        // const users_id = this.state.currentUser.id;
-
-        dailystockDataService.delete(id)
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(e => {
-            console.log(e);
-        });
-        const redirect = this.props.location.search ? this.props.location.search.split("=")[1] : '/'
-        this.props.history.push(redirect);   // to sign-in before process cart
-        
-        
-        // tam dung
-        // window.location="/dailystocks/1?searchKeyword=";
-        
-    }
+    
 
   
     render() {
