@@ -97,7 +97,7 @@ class App extends Component {
                           <Link to="/addtrade">Add New Trade</Link>
                         </li>
                         <li>
-                          <Link to="/underconstructon ">A user can do</Link>
+                          <Link to="/underconstruction ">User can do</Link>
                         </li>
                     </div>
                   : null

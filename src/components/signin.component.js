@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { userLoginFetch } from '../actions/userActions';
 import { connect } from 'react-redux';
-
+import Tappable from 'react-tappable';
 
 class SigninScreen extends Component {
     constructor(props) {
@@ -88,7 +88,8 @@ render() {
           </input>
         </li>
         <li>
-          <button type="submit" className="btn btn-primary">Signin</button>
+          {/* <button type="submit" className="btn btn-primary">Signin</button> */}
+          <Tappable onTap={() => this.submitHandler(e)}>Signin</Tappable>
         </li>
         <li>
           <Link to="/adduser">New to DD Shopping?</Link>
