@@ -91,6 +91,18 @@ class App extends Component {
                     {/* <Link to="/underconstruction">Orders List</Link> */}
                   </li>
                   {/* Phan quyen so so */}
+                  { this.props.currUser.userInfo ? 
+                    <div>
+                        <li>
+                          <Link to="/addtrade">Add New Trade</Link>
+                        </li>
+                        <li>
+                          <Link to="/underconstructon ">A user can do</Link>
+                        </li>
+                    </div>
+                  : null
+                  }
+
                   { this.props.currUser.userInfo ? ( this.props.currUser.userInfo.isadmin === 0 ?
                     <div>
                         <li>
@@ -98,7 +110,7 @@ class App extends Component {
                           <Link to="/adduser">Add User</Link>
                         </li>
                         <li>
-                          <Link to="/addtrade">Add Daily Stock Transaction</Link>
+                          <Link to="/importcsv">Import CSV</Link>
                         </li>
                         <li>
                           <Link to="/underconstruction">Add Product</Link>
@@ -107,7 +119,6 @@ class App extends Component {
                     </div>
                   : null ) : null
                   }
-
                   
                 </ul>
               </div>
@@ -131,9 +142,6 @@ class App extends Component {
           <ul>
             <li>
               <a href="/dailystocks/1?searchKeyword=">Trading List</a>
-            </li>
-            <li>
-              <a href="/importcsv/">Import CSV</a>
             </li>
             <li>
               <a href="/underconstruction/">Retail Seal Box</a>
@@ -176,8 +184,8 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+//import { connect } from 'react-redux';
 
 // REACT_APP_API_URL = http://localhost:8080/api/
 // REACT_APP_URL = http://localhost:8080/

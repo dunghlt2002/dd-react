@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import dailystockDataService from "../services/dailystock.service";
 import {NavLink, Link  } from "react-router-dom";
+import { connect } from 'react-redux';
 
 class TradeDetail extends Component {
     constructor(props) {
@@ -88,21 +89,27 @@ class TradeDetail extends Component {
             <div className="container">
                 <div className="col-lg-12 col-md-10 mx-auto">
                     <div className="card border-primary mb-3 mt-2">
-                        <div className="card-header"><h3>{this.state.currentTrade.title}</h3>
+                        <div className="card-header"><h2>{this.state.currentTrade.title}</h2>
                             <div>
                                 <a href="/dailystocks/1?searchKeyword=">Trading List  ... </a>
                                 <Link to="/dailystocks/1?searchKeyword=" >Link to Trading List</Link>
                             </div>
                             <div className="card-body text-primary">
                                 <div className="row">
-                                    
                                     <div className="col">
-                                        <div>Date: {this.state.currentTrade.createdAt}. Time frame: {this.state.currentTrade.timeframe}.</div>
-                                        <div>Stok code: {this.state.currentTrade.symbolcode}. Quantity: {this.state.currentTrade.qty}</div>
+                                        <h5>
+                                            <div >Created by: {this.state.currentTrade.createdby}.</div>
+                                            <div >Created date: {this.state.currentTrade.createdAt}.</div>
+                                            <div >Last updated: {this.state.currentTrade.updatedAt}.</div>
+                                        </h5>
+
+                                        <br></br>
+                                        <div>Time frame: {this.state.currentTrade.timeframe}. Symbol: {this.state.currentTrade.symbolcode}. Quantity: {this.state.currentTrade.qty}</div>
                                         <div><b className=" float-left" style={{color: this.translateBuyShort(this.state.currentTrade.buyshort)[1]}}>
                                                 {this.translateBuyShort(this.state.currentTrade.buyshort)[0]}</b>
                                         </div>
-                                        <div>: Entry point: {this.state.currentTrade.entrypoint}. Exit point {this.state.currentTrade.exitpoint} 👍</div>
+                                        <div >: Entry point: {this.state.currentTrade.entrypoint}. Exit point {this.state.currentTrade.exitpoint} 👍</div>
+                                        <br></br>
                                         <div>👉 Stochastic: <b style={{color: this.translateIndicatorColor(this.state.currentTrade.stocolor)}}> {this.translateIndicatorColor(this.state.currentTrade.stocolor)} </b> </div>
                                         <div>👉 RSI       : <b style={{color: this.translateIndicatorColor(this.state.currentTrade.rsicolor)}}> {this.translateIndicatorColor(this.state.currentTrade.rsicolor)} </b> </div>
                                         <div>👉 MACD      : <b style={{color: this.translateIndicatorColor(this.state.currentTrade.macdcolor)}}> {this.translateIndicatorColor(this.state.currentTrade.macdcolor)} </b> </div>
@@ -155,4 +162,16 @@ class TradeDetail extends Component {
     }
 }
 
-export default TradeDetail;
+const mapStateToProps = (state, ownProps) => {
+    console.log('userSignin trong Trade.js ' + JSON.stringify(state.userSignin));
+    return {
+        currUser: state.userSignin
+    }
+  }
+  
+export default connect(mapStateToProps, null)(TradeDetail);
+//   export default TradeDetail;
+//import { connect } from 'react-redux';
+  
+  
+  

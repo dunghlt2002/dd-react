@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link,NavLink, Redirect} from "react-router-dom";
 import dailystockDataService from "../services/dailystock.service";
-
+import { connect } from 'react-redux';
 
 class Trade extends Component {
     constructor(props) {
@@ -17,7 +17,6 @@ class Trade extends Component {
             // showEditButton:false,
             showDeleteButton:false
         }
-        // this.deleteTrade = this.deleteTrade.bind(this);
     }
 
     componentWillMount() {
@@ -55,7 +54,7 @@ class Trade extends Component {
 
 
     // Chuan bi du lieu vao item obj de load vao modal form de edit
-    editTradeeee = () => {
+    editTradeeeeeeee = () => {
         console.log('edit chuan bi');
         
         var item={};
@@ -74,6 +73,9 @@ class Trade extends Component {
         item.qty = this.props.qty;
         item.s_image = this.props.s_image;
         item.b_image = this.props.b_image;
+        item.createdby = this.props.createdby;
+        item.created_at = this.props.created_at;
+        item.updated_at = this.props.updated_at;
 
         return item;
     }
@@ -87,12 +89,17 @@ class Trade extends Component {
         
             <div className="btn-group float-right">
             
+
+            { this.props.currUser.userInfo ? ( this.props.currUser.userInfo.isadmin === 0 || this.props.currUser.userInfo.user === this.props.createdby ?
                 <div className="btn-group float-right">
                     <Link to={"/editTrade/" + this.props.tradeId}
                         className="btn btn-block btn-success" > 
                         Edit
                     </Link>
-                </div>
+                </div>   
+            : null ) : null
+            }
+
             </div>
             
         )
@@ -155,7 +162,6 @@ class Trade extends Component {
                 <Link to={"/tradedetail/" + this.chuyenDoiURL(this.props.title) + "." + this.props.tradeId + ".html"}>
                     {/* uploads folder is the same level of app folder */}
                     <img className="card-img-top" src={this.state.API_URL + "uploads/" + this.props.s_image} alt={this.props.s_image}/></Link>
-                    {/* <img className="card-img-top" src={"http://localhost:8080/uploads/" + this.props.s_image} alt={this.props.s_image}/></Link> */}
             </div>
     
         {/* Title va cac thong tin quan trong header */}
@@ -172,7 +178,12 @@ class Trade extends Component {
                     </b>
                 </div>
                 <hr></hr>
-                <div>Date: {this.props.createddate}.</div>
+                <h5>
+                    <div >Created by: {this.props.createdby}.</div>
+                    <div >Created date: {this.props.createdAt}.</div>
+                    <div >Last updated: {this.props.updatedAt}.</div>
+                </h5>
+                <br></br>
                 <div>Time frame: {this.props.timeframe}.</div>
                 <div>Stok code: {this.props.symbolcode}. Quantity: {this.props.qty}</div>
                 <div><b className=" float-left" style={{color: this.translateBuyShort(this.props.buyshort)[1]}}>
@@ -193,4 +204,13 @@ class Trade extends Component {
     }
 }
 
-export default Trade;
+const mapStateToProps = (state, ownProps) => {
+    console.log('userSignin trong Trade.js ' + JSON.stringify(state.userSignin));
+    return {
+        currUser: state.userSignin
+    }
+  }
+  
+export default connect(mapStateToProps, null)(Trade);
+//import { connect } from 'react-redux';
+// export default Trade;

@@ -19,7 +19,7 @@ class AddUser extends Component {
       data:null ,
       title:'Go LONG ' ,
       timeframe:'3 min',
-      createddate:'',
+      // createddate:'',
       symbolcode:'',
       buyshort: null,
       qty:'100',
@@ -31,7 +31,7 @@ class AddUser extends Component {
       macd_htf:'1',
       b_image: null,
       s_image: null,
-      createdby:'',
+      createdby: '',
       selectedFile: null,
       selectedBigFile:'',
       submitted: false,
@@ -138,14 +138,12 @@ class AddUser extends Component {
       console.log('sssssssssssssssssss');
         ss_image = '../uploads/commingsoon.jpg'
     }
-    console.log('ten file nho 2' + this.state.s_image);
-    console.log('ten file lon ' + this.state.b_image);
+    console.log('ten file lon ' + this.props.currUser.userInfo.user);
 
           // Xu ly add du lieu vao db
           var {title,createddate,timeframe,symbolcode,qty,entrypoint,exitpoint,buyshort,stocolor,rsicolor,macdcolor,macd_htf,b_image,s_image,createdby} = this.state;
           var data = {
             title: title,
-            createddate: createddate,
             timeframe: timeframe,
             symbolcode: symbolcode,
             qty: qty,
@@ -158,7 +156,9 @@ class AddUser extends Component {
             macd_htf: macd_htf,
             b_image: b_image === null? bb_image:b_image,
             s_image: s_image === null? ss_image:s_image,
-            createdby: createdby
+            createdAt: Date(),
+            updatedAt: null,
+            createdby: this.props.currUser.userInfo.user
           };
     
     dailystockDataService.create(data)

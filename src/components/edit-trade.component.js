@@ -3,6 +3,7 @@ import axios from "axios";
 import dailystockDataService from "../services/dailystock.service";
 import myUtility from "../utils/utility";
 import {NavLink, Link  } from "react-router-dom";
+import { connect } from 'react-redux';
 
 class EditTrade extends Component {
     constructor(props) {
@@ -481,14 +482,9 @@ render() {
 
                                 <div className="form-group">
                                     <button type="button" className="btn btn-warning" data-dismiss="modal" onClick={(event) => this.updateTrade(event)}>Save Changes</button>
-
-
                                     <button type="button" onClick={(e) => { if (window.confirm('Are you sure you wish to delete this item?')) this.deleteTrade(e) } } className="btn btn-danger">
-                                    {/* <button type="button" onClick={() =>  this.deleteTrade(this.props.tradeId)  } className="btn btn-block btn-danger"> */}
                                     Delete
                                     </button>
-            
-
                                     <button onClick={(event) => this.backToTradingList(event)} type="button" className="btn btn-danger" data-dismiss="modal">Discard</button>
                                 </div>
 
@@ -505,5 +501,16 @@ render() {
     }
 }
 
-export default EditTrade;
+
+const mapStateToProps = (state, ownProps) => {
+  console.log('userSignin trong App.js ' + JSON.stringify(state.userSignin));
+  return {
+      currUser: state.userSignin
+  }
+}
+
+export default connect(mapStateToProps, null)(EditTrade);
+// export default EditTrade;
+//import { connect } from 'react-redux';
+
 

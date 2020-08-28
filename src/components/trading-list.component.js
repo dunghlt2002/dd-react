@@ -21,7 +21,6 @@ class tradingList extends Component {
       data:null ,
       title:'Go LONG ' ,
       timeframe:'3 min',
-      createddate:'',
       symbolcode:'',
       buyshort: null,
       qty:'100',
@@ -34,6 +33,8 @@ class tradingList extends Component {
       b_image: null,
       s_image: null,
       createdby:'',
+      createdAt:'',
+      updatedAt:'',
       selectedFile:'',
       showForm: false,
       showAddButton: true,
@@ -100,26 +101,6 @@ class tradingList extends Component {
     // }
     this.retrieveTransactions(this.state.currentPage,this.state.searchKeyword);
     this.retrieveNotMasterCategories();
-
-   
-      // const cu = localStorage.getItem('user');
-      // if(cu !== null) {
-      //   this.setState({
-      //     currentuser: localStorage.getItem('user'),
-      //     createdby: localStorage.getItem('user'),
-      //     showAddButton: true,
-      //   })
-      //   console.log('C-U trong trading list:  ' + this.state.createdby);
-      // }
-
-    // if(this.state.data === null ){
-    //   getProductData().then((res)=>{
-    //     //console.log('res la gi  ' + res); // la data object
-    //     this.setState({
-    //       data:res
-    //     });
-    //   })
-    // }
 
   }
 
@@ -206,24 +187,27 @@ renderAddForm = () => {
     console.log('vo print data trading list ' + JSON.stringify(this.state.data));
       if(this.state.data !== null){
        return  this.state.data.map((value,key)=> 
-           (<Trade
-           key={key}
-           tradeId={value.id}
-           title={value.title}
-           createddate={value.createddate}
-           timeframe={value.timeframe}
-           symbolcode={value.symbolcode}
-           qty={value.qty}
-           entrypoint={value.entrypoint}
-           exitpoint={value.exitpoint}
-           buyshort={value.buyshort}
-           stocolor={value.stocolor}
-           rsicolor={value.rsicolor}
-           macdcolor={value.macdcolor}
-           macd_htf={value.macd_htf}
-           b_image={value.b_image}
-           s_image={value.s_image}
-           createdby={value.createdby}   />)
+          (<Trade
+              key={key}
+              tradeId={value.id}
+              title={value.title}
+              createddate={value.createddate}
+              timeframe={value.timeframe}
+              symbolcode={value.symbolcode}
+              qty={value.qty}
+              entrypoint={value.entrypoint}
+              exitpoint={value.exitpoint}
+              buyshort={value.buyshort}
+              stocolor={value.stocolor}
+              rsicolor={value.rsicolor}
+              macdcolor={value.macdcolor}
+              macd_htf={value.macd_htf}
+              b_image={value.b_image}
+              s_image={value.s_image}
+              updatedAt={value.updatedAt}
+              createdAt={value.createdAt}
+              createdby={value.createdby}   
+          />)
         )
       }
   }
