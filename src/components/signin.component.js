@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { userLoginFetch } from '../actions/userActions';
 import { connect } from 'react-redux';
-// import Tappable from 'react-tappable';
-import Tappable from 'react-tappable/lib/Tappable';
+import Tappable from 'react-tappable';
+// import Tappable from 'react-tappable/lib/Tappable';
 
 class SigninScreen extends Component {
     constructor(props) {
