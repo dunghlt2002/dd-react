@@ -366,9 +366,16 @@ renderAddForm = () => {
       
               {/* We want to show the form if the state is true */}
               {this.state.showAddButton && this.renderAddButton()}
+              
+              { this.props.currUser.userInfo ? 
               <div className="col-divide-header">
-                  Hihihihi - Good Luck,  <Link to="/addtrade">Add New</Link>
+                  Hihihihi - Good Luck {this.props.currUser.userInfo.user}, <Link to="/addtrade">ADD NEW TRADE</Link>
               </div>
+              : null
+                  }
+
+              
+
               {/* Bat dau phan trading list chinh */}
               <div className="container-fluid col-12">
                   <div className="row">
