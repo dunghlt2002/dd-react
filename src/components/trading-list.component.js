@@ -446,7 +446,7 @@ const mapStateToProps = (state, ownProps) => {
   console.log('userSignin trong user List ' + JSON.stringify(state.userSignin.userInfo));
   
   return {
-      currUser: state.userSignin.userInfo
+      currUser: state.userSignin
   }
 }
 export default connect(mapStateToProps, null)(tradingList);
