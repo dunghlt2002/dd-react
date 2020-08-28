@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { userLoginFetch } from '../actions/userActions';
 import { connect } from 'react-redux';
-import Tappable from 'react-tappable';
+
+// Phan Tappable de cac buttons works on Mobile Device, nhung cuoi cung van chua works!!!!????
+// import Tappable from 'react-tappable';
 // import Tappable from 'react-tappable/lib/Tappable';
 
 class SigninScreen extends Component {
@@ -64,9 +66,9 @@ class SigninScreen extends Component {
     console.log('con khong ta');
     // this.props.history.push("/"); // for testing new app
   }
-  submitSingin = (e) => {
+  submitSingin = () => {
     console.log('submit login ne');
-    e.preventDefault();
+    // e.preventDefault();
     // dispatch(userLoginFetch(this.state.user, this.state.password));
     this.props.userLoginFetch(this.state.user,this.state.password);
     console.log('con khong ta');
@@ -99,8 +101,8 @@ render() {
           </input>
         </li>
         <li>
-          {/* <button type="submit" className="btn btn-primary">Signin</button> */}
-          <Tappable onTap={this.submitSingin}>Signin</Tappable>
+          <button type="submit" className="btn btn-primary">Signin</button>
+          {/* <Tappable onTap={this.submitSingin}>Signin</Tappable> */}
         </li>
         <li>
           <Link to="/adduser">New to DD Shopping?</Link>
