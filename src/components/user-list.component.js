@@ -14,6 +14,8 @@ class usersList extends Component {
     this.setActiveUser = this.setActiveUser.bind(this);
     this.searchKeyword = this.searchKeyword.bind(this);
     this.onChangeCurrentPage = this.onChangeCurrentPage.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
+    
     
 
     this.state = {
@@ -45,16 +47,26 @@ class usersList extends Component {
 
   //works great 6/26/2020
   deleteUser(id) {  
-    //console.log('vo delete func   :  ' + cat_id);  
+    
     userDataService.delete(id)
       .then(response => {
-        console.log(response.data);
-        // this.props.history.push('/users')
+        console.log('sau khi delete : ' + response.data);
+        // this.setState({
+        //   users: response.data
+        // })
       })
       .catch(e => {
         console.log(e);
       });
-      window.location="/users";
+
+      // window.location="/users";
+      // var arrUesrList = this.state.users.filter(function(x) { return x !== id; });
+      // console.log('arrUesrList ' + arrUesrList);
+      // this.setState({
+      //   users: arrUesrList
+      // })
+      this.retrieveusers(1);
+
   }
 
   onChangesearchKeyword(e) {
@@ -188,7 +200,7 @@ class usersList extends Component {
 
 
                   {/* Phan quyen so so */}
-                  { this.props.currUser ? ( this.props.currUser.isadmin === 0 ?
+                  { this.props.currUser ? ( this.props.currUser.isadmin === 0 && this.props.currUser.id !== this.state.currentUser.id ?
                       <button className="btn btn-block btn-danger" 
                       //button badge-danger mr-2
                       type="reset" onClick={() => {

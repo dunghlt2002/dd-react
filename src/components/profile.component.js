@@ -48,7 +48,7 @@ class UserProfile extends Component {
     }
     else {
       console.log('params ' + this.props.match.params.id);
-      console.log('params ' + this.props.currUser.userInfo.id);
+      console.log('params ' + this.props.currUser.id);
       this.getUser(this.props.match.params.id);
 
       // this.getUser(this.props.currUser.userInfo.id);
@@ -183,27 +183,6 @@ class UserProfile extends Component {
         // Xu ly tiep phan upload file
         myUtility.uploadFiles("upfileAvatars", this.state.selectedFile);
 
-        // const fd = new FormData();
-
-        // // neu co chon file hinh de upload thi moi chay khuc upload nay
-        // if (this.state.selectedFile) {
-        //     fd.append("upfileAvatars", this.state.selectedFile);
-        //     console.log("ten file se up la " + this.state.selectedFile.name);
-          
-        //     // tat ca cac function tren backend deu bat dau la localhost:8080/api
-        //     // con dieu do qui dinh o dau thi khong biet luon
-        //     axios({
-        //         url: "http://localhost:8080/api/upfileAvatars",
-        //         method: "post",
-        //         data: fd,
-        //     }).then(res => {
-        //         console.log('file upload result: ' + res.statusText);
-        //     }).catch(e => {
-        //       console.log(e);
-        //     })
-        //   }
-
-
       })
       .catch(e => {
         console.log(e);
@@ -245,7 +224,7 @@ class UserProfile extends Component {
         <form >
           <ul className="form-container">
             {
-              (this.props.match.params.id == this.props.currUser.userInfo.id) && 
+              (this.props.match.params.id == this.props.currUser.id) && 
             <li>
               <button type="button" onClick={this.logoutHandler} className="btn-block btn-danger">Logout</button>
             </li>
@@ -274,8 +253,7 @@ class UserProfile extends Component {
 
             <li className="form-group">
                 <label htmlFor="products_price">Avatar</label>
-                {/* https://dd-dailystock-node.herokuapp.com/ */}
-                <img className="avatar-image" src={this.state.API_URL + "avatars/" + this.state.avatar} alt={this.state.avatar}></img>
+                {/* <img className="avatar-image" src={this.state.API_URL + "avatars/" + this.state.avatar} alt={this.state.avatar}></img> */}
                 <input className="avatarfile" type="file" onChange={this.fileSelectedHandler}></input>
                 <input
                   type="text"
@@ -286,12 +264,10 @@ class UserProfile extends Component {
                 />
             </li>
 
-
+            {/* htmlFor="email"> */}
             <li>
-              <label htmlFor="email">
-                Email
-              </label>
-              <input value={currentUser.email} type="" name="email" id="email" onChange={(e) => this.onChangeEmail(e)}>
+              <label >Email </label>
+              <input value={currentUser.email} type="text" name="email" id="email" onChange={(e) => this.onChangeEmail(e)}>
               </input>
             </li>
 
@@ -308,25 +284,34 @@ class UserProfile extends Component {
                 </label>
                 
             </li>
-            <li>
-                {/* nut status update nay de hoc hoi cho vui chu hong co khac biet gi ro rang voi cac field khac */}
-                {currentUser.isadmin ? (
-                  <button
-                    className="btn badge-primary"
-                    onClick={() => this.updateIsAdmin_status(0)}
-                  > Change to Admin Role
-                  </button>
-                ) : (
-                  <button
-                    className="btn btn-info"
-                    onClick={() => this.updateIsAdmin_status(1)}
-                  > Change to Regular User
-                  </button>
-                )}
-            </li>
-            <li>
-              <button type="button"  onClick={this.updateUser} className="btn-block btn-success">Update</button>
-            </li>
+            
+            
+            {/* { this.props.currUser.id !== this.state.currentUser.id ? */}
+            { this.props.currUser.isadmin === 0 && this.props.currUser.id !== this.state.currentUser.id?
+                <li>
+                    {currentUser.isadmin ? (
+                      <button
+                        className="btn badge-primary"
+                        onClick={() => this.updateIsAdmin_status(0)}
+                      > Change to Admin Role
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-info"
+                        onClick={() => this.updateIsAdmin_status(1)}
+                      > Change to Regular User
+                      </button>
+                    )}
+                </li>  
+
+            : null
+
+            }
+              <li>
+                <button type="button"  onClick={this.updateUser} className="btn-block btn-success">Update</button>
+                {/* <button type="button"  onClick={this.updateUser} className="btn-block btn-danger">Delete</button> */}
+              </li>
+            
           </ul>
         </form>
       </div>
@@ -340,11 +325,9 @@ const mapDispatchToProps = dispatch => ({
 })
 const mapStateToProps = (state, ownProps) => {
   console.log('userSignin trong Profile phan mapstatetoprops' + JSON.stringify(state.userSignin));
-  // console.log('ID  trong Profile phan mapstatetoprops' + JSON.stringify(state.userSignin.userInfo.id));
-  // console.log('token  trong Profile phan mapstatetoprops' + JSON.stringify(state.userSignin.userInfo.token));
   
   return {
-      currUser: state.userSignin
+      currUser: state.userSignin.userInfo
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);
