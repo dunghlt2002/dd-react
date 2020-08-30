@@ -19,6 +19,15 @@ class Trade extends Component {
         }
     }
 
+    toMyFormatDate(ngay) {
+        var ngayve;
+        if (ngay !== null) {
+            // ngayve = ngay.split('-')[0] + '/' + ngay.split('-')[1] + '/' + ngay.split('-')[2] + ' --- ' + ngay.split('T')[0]
+            ngayve = ngay.split('T')[0] + ' at ' + ngay.split('T')[1].slice(0,8)
+        }
+        return ngayve
+    }
+
     componentWillMount() {
         // const cu = localStorage.getItem('user');
         // if(cu !== null) {
@@ -180,8 +189,11 @@ class Trade extends Component {
                 <hr></hr>
                 <h5>
                     <div >Created by: {this.props.createdby}.</div>
-                    <div >Created date: {this.props.createdAt}.</div>
-                    <div >Last updated: {this.props.updatedAt}.</div>
+                    <div >Created date: 
+                        {
+                        this.toMyFormatDate(this.props.createdAt)
+                        }.</div>
+                    <div >Last updated: {this.toMyFormatDate(this.props.updatedAt)}.</div>
                 </h5>
                 <br></br>
                 <div>Time frame: {this.props.timeframe}.</div>

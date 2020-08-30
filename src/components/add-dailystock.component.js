@@ -132,7 +132,7 @@ class AddUser extends Component {
       var today = new Date(),
       date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
       // datee = (today.getMonth() + 1).toString + today.getDate().toString + today.getFullYear().toString;
-      bb_image = '..uploads/' + this.state.symbolcode + '-' + date
+      bb_image = '..uploads/' + this.state.symbolcode + '-' + date + '.png'
     }
     if (this.state.s_image == null) {
       console.log('sssssssssssssssssss');
