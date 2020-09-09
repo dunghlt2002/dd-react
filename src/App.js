@@ -17,6 +17,11 @@ import TradeDetail from "./components/trade-detail.component";
 import EditTrade from "./components/edit-trade.component";
 import AddTrade from "./components/add-dailystock.component";
 
+import ContentList from "./components/content-list.component";
+import ContentDetail from "./components/content-detail.component";
+import EditContent from "./components/edit-content.component";
+import AddContent from "./components/add-content.component";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -141,6 +146,9 @@ class App extends Component {
 
           <ul>
             <li>
+              <a href="/contents/1?searchKeyword=">Content List</a>
+            </li>
+            <li>
               <a href="/dailystocks/1?searchKeyword=">Trading List</a>
             </li>
             <li>
@@ -158,6 +166,10 @@ class App extends Component {
               <Route exact path={"/adduser"} component={AddUser} />
               <Route exact path={"/userProfile/:id"} component={UserProfile} />
               <Route exact path={"/importcsv"} component={ImportCSV} />
+              <Route exact path={"/contents/:currentPage" } component={ContentList} />
+              <Route exact path="/contentdetail/:slug.:id.html" component={ContentDetail}/>
+              <Route exact path={"/editContent/:id"} component={EditContent} />
+              <Route exact path={"/addcontent"} component={AddContent} />
               <Route exact path={"/dailystocks/:currentPage" } component={TradingList} />
               <Route exact path="/tradedetail/:slug.:id.html" component={TradeDetail}/>
               <Route exact path={"/editTrade/:id"} component={EditTrade} />
