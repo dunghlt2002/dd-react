@@ -23,7 +23,7 @@ class AddContent extends Component {
       content_cat_id:'0',
       buyshort: null,
       c_view:'0',
-      c_body:"Your content is here. DDC: 3c hay la D2C1 ta. ChútChéo CôCậu lên luôn",
+      c_body:"Your content is here. DDC: 3c hay la D2C1 ta. Chút Chéo Cô Cậu lên luôn nhe!!!",
       b_image: null,
       s_image: null,
       createdby: '',
