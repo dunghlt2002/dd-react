@@ -163,7 +163,7 @@ class AddContent extends Component {
         ) : (
           <div className="form-container-big">
             <li>
-              <h2>Add New Content</h2>
+              <h2>Add New Content here ...</h2>
             </li>
                   <div className="form group">
                       <input onChange={(event)=> this.isChange(event)} type="text" className="form-control" name="subject" id="subject" aria-describedby="name_text" value={this.state.subject} placeholder="Enter subject" />
@@ -197,7 +197,7 @@ class AddContent extends Component {
                                     {/* <textarea id="wmd-input" name="post-text" className="form-control" data-post-type-id="2" cols="92" rows="15" value={c_body} onChange={e => setC_body(e.target.value)} placeholder="Endter content here"></textarea> */}
                                     <CKEditor
                                         editor={ ClassicEditor }
-                                        data="Your content is here. DDC: 3c hay la D2C1 ta. ChútChéo CôCậu lên luôn..."
+                                        data="Your content is here. DDC: 3c hay la D2C1 ta. ChútChéo CôCậu lên luôn nhe..."
                                         onInit={ editor => {
                                             // You can store the "editor" and use when it is needed.
                                             console.log( 'Editor is ready to use!', editor );
