@@ -20,9 +20,10 @@ class AddContent extends Component {
       id: null,
       data:null ,
       subject:'DDC: ' ,
-      content_cat_id:'',
+      content_cat_id:'0',
       buyshort: null,
       c_view:'0',
+      c_body:"Your content is here. DDC: 3c hay la D2C1 ta. ChútChéo CôCậu lên luôn",
       b_image: null,
       s_image: null,
       createdby: '',
@@ -196,7 +197,7 @@ class AddContent extends Component {
                                     {/* <textarea id="wmd-input" name="post-text" className="form-control" data-post-type-id="2" cols="92" rows="15" value={c_body} onChange={e => setC_body(e.target.value)} placeholder="Endter content here"></textarea> */}
                                     <CKEditor
                                         editor={ ClassicEditor }
-                                        data="<p>Your content is here. DDC: 3c hay la D2C1 ta. ChútChéo CôCậu lên luôn</p>"
+                                        data="Your content is here. DDC: 3c hay la D2C1 ta. ChútChéo CôCậu lên luôn..."
                                         onInit={ editor => {
                                             // You can store the "editor" and use when it is needed.
                                             console.log( 'Editor is ready to use!', editor );

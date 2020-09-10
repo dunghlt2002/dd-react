@@ -12,7 +12,7 @@ class contentDataService {
     // { headers: {'Authorization': `Bearer ${token}` }}
     // );
     console.log('xoa id ' + transaction_id); 
-    return axios.delete(API_URL + `dailystock/${transaction_id}`);
+    return axios.delete(API_URL + `content/${transaction_id}`);
   }
 
   getAll(currentPage,search_keyword) {
