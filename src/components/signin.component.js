@@ -105,6 +105,9 @@ render() {
           {/* <Tappable onTap={this.submitSingin}>Signin</Tappable> */}
         </li>
         <li>
+          <Link to="/forgotpassword">Forget password?</Link>
+        </li>
+        <li>
           <Link to="/adduser">New to DD Shopping?</Link>
         </li>
         <li>

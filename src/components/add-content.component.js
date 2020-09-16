@@ -172,17 +172,10 @@ class AddContent extends Component {
                   <div className="form-inline">
                       <div className="form-group">
                         <label htmlFor="entry">Content Cat ID: </label>
-                        <input onChange={(event)=> this.isChange(event)} type="text" className="form-inline" name="content_cat_id" id="content_cat_id" aria-describedby="name_text" placeholder="Enter stock content_cat_id"/>
+                        <input onChange={(event)=> this.isChange(event)} type="text" className="form-inline" name="content_cat_id" id="content_cat_id" aria-describedby="name_text" placeholder="Enter content_cat_id" value={this.state.content_cat_id}/>
                       </div>
                   </div>
                   
-                  <div className="form-inline">
-                  <div className="form-group">
-                        <label htmlFor="entry">View: </label>
-                        <input onChange={(event)=> this.isChange(event)} type="text" className="form-inline" name="c_view" id="c_view" aria-describedby="name_text" placeholder="Entry price" />
-                      </div>
-                  </div>
-
                   <div className="form-group">
                       <label>Small image
                       <input className="s_image" type="file" onChange={(e) => this.fileSelectedHandler(e)}></input>

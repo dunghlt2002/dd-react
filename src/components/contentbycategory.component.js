@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import {Link,} from "react-router-dom";
 import { connect } from 'react-redux';
+import contentDataService from "../services/content.service";
+import Content from './content.component';
 
-class Content extends Component {
+class ContentByCategory extends Component {
     constructor(props) {
         super(props);
         this.state = {
             API_URL: process.env.REACT_APP_URL,
-            // data:{} ,   // khong can data nay
-            // id:'',   // khong can data nay
-            // selectedFile:'none',   // khong can data nay
-            // currentContent:'',   // khong can data nay
+            data:null ,
+            searchKeyword: '',
             showForm: false,
             showAddButton: false,
-            // showEditButton:false,
+            currentContent:'',
             showDeleteButton:false
         }
     }
@@ -28,6 +28,10 @@ class Content extends Component {
     }
 
     componentWillMount() {
+        
+        this.retrieveContentsByCat(this.props.categoryId)
+        // this.retrieveContents(1,this.state.searchKeyword)
+
         // const cu = localStorage.getItem('user');
         // if(cu !== null) {
         //     this.setState({
@@ -43,7 +47,59 @@ class Content extends Component {
             
         //     console.log('data :  ' + this.state.data);
         // } 
+
     }
+    // retrieveContents(currentPage, keyword) {
+    //     console.log('key ' + this.state.searchKeyword);
+    //     contentDataService.getAll(currentPage,keyword)
+    //       .then(response => {
+    //         this.setState({
+    //           data: response.data.data,
+    //           totalPages: response.data.pages
+    //         });
+    //         console.log('server' + response.data.data);
+    //         console.log('this state' + this.state.data);
+    //         console.log('ket qua total pages' + response.data.pages);
+    //       })
+    //       .catch(e => {
+    //         console.log(e);
+    //       });
+    //   }
+
+    retrieveContentsByCat = (cat_id) => {
+        console.log('contents loading by cat ID truyen tu List qua: ' + cat_id);
+
+        contentDataService.getAllByCat(cat_id)
+        .then(response => {
+            this.setState({
+                data: response.data
+            });
+            // console.log('content data o server: ' + JSON.stringify(response.data));
+            console.log('content data tra ve: ' + JSON.stringify(this.state.data));
+        })
+        .catch(e => {
+            console.log(e);
+        });
+}
+
+    printData = () => {
+          if(this.state.data !== null){
+           return  this.state.data.map((value,key)=> 
+              (<Content
+                  key={key}
+                  contentId={value.id}
+                  subject={value.subject}
+                  content_cat_id={value.content_cat_id}
+                  c_view={value.c_view}
+                  b_image={value.b_image}
+                  s_image={value.s_image}
+                  updatedAt={value.updatedAt}
+                  createdAt={value.createdAt}
+                  createdby={value.createdby}   
+              />)
+            )
+          }
+      }
 
     renderDeleteButton = () => {
         // keu editTrade de load du lieu vao object
@@ -104,42 +160,17 @@ class Content extends Component {
     render() {
         return (
 
-        <div className="card-header col" >
-                                        
-            {/* Hinh size nho, avatar  */}
-            <div className="float-left col-3">
-            <Link to={"/contentdetail/" + this.chuyenDoiURL(this.props.subject) + "." + this.props.contentId + ".html"}>
-                {/* <Link to={"/contentdetail/" + "." + this.props.contentId + ".html"}> */}
-                    {/* uploads folder is the same level of app folder */}
-                    <img className="card-img-top" src={this.state.API_URL + "uploads/" + this.props.s_image} alt={this.props.s_image}/></Link>
+            <div className="card border-primary mb-3 mt-2 col-10">
+            <div className="col-10">
+              <div className="row">
+                  <strong>{this.props.content_cat_desc} (ID: {this.props.categoryId})</strong>
+
+              </div>
             </div>
-    
-            {/* subject va cac thong tin quan trong header */}
-            <div className="float-left">
-                <div>
-                <Link to={"/contentdetail/" + this.chuyenDoiURL(this.props.subject) + "." + this.props.contentId + ".html"}>{this.props.subject + "."}</Link>
-                </div>
-                <div>
-                    <b className=" float-right">
-                        <i className=" float-right">
-                            {'=> View(s): ' + this.props.c_view + ' in category ID: ' + this.props.content_cat_id}
-                        </i>
-                    </b>
-                </div>
-                <h5>
-                    <div >Created by: {this.props.createdby}.</div>
-                    <div >Created date: 
-                        {
-                        this.toMyFormatDate(this.props.createdAt)
-                        }.</div>
-                    <div >Last updated: {this.toMyFormatDate(this.props.updatedAt)}.</div>
-                </h5>
-                <br></br>
-            </div>
-            <div className="float-right">
-                {this.state.showDeleteButton && this.renderDeleteButton()}
-            </div>
-        </div>
+
+                  {this.printData()}
+          </div>
+
         );
     }
 }
@@ -151,5 +182,5 @@ const mapStateToProps = (state, ownProps) => {
     }
   }
   
-export default connect(mapStateToProps, null)(Content);
+export default connect(mapStateToProps, null)(ContentByCategory);
 

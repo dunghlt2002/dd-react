@@ -16,8 +16,13 @@ class contentDataService {
   }
 
   getAll(currentPage,search_keyword) {
-    console.log('get all transactions here limit ' + currentPage) ;
+    console.log('get all CONTENT by CAT ID ' + search_keyword) ;
     return axios.get(API_URL + `contents/${currentPage}?search_keyword=${search_keyword}`);
+  }
+
+  getAllByCat(search_keyword) {
+    console.log('get all by CAT ' + search_keyword) ;
+    return axios.get(API_URL + `contentsbycat/${search_keyword}`);
   }
 
   // de danh cho category

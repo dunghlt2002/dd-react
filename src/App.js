@@ -5,18 +5,23 @@ import './App.css';
 import { connect } from 'react-redux';
 
 import HomeScreen from "./components/home.component"; 
+
 import UsersList from "./components/user-list.component";
 import AddUser from "./components/add-user.component";
 import UserProfile from "./components/profile.component";
 import SigninScreen from "./components/signin.component";
+import ForgotPassword from "./components/forgot-password.component";
 import { userLogoutFetch } from './actions/userActions';
+
 import ImportCSV from "./components/import-csv.component";
 import UnderConstruction from "./components/z-under-construction.component";
+
 import TradingList from "./components/trading-list.component";
 import TradeDetail from "./components/trade-detail.component";
 import EditTrade from "./components/edit-trade.component";
 import AddTrade from "./components/add-dailystock.component";
 
+import Content_CategoryList from "./components/content_category-list.component";
 import ContentList from "./components/content-list.component";
 import ContentDetail from "./components/content-detail.component";
 import EditContent from "./components/edit-content.component";
@@ -146,6 +151,9 @@ class App extends Component {
 
           <ul>
             <li>
+              <a href="/content_cats">Content by Category List</a>
+            </li>
+            <li>
               <a href="/contents/1?searchKeyword=">Content List</a>
             </li>
             <li>
@@ -162,10 +170,12 @@ class App extends Component {
             <Switch>
               <Route path="/" exact={true} component={HomeScreen} />
               <Route exact path={["/signin"]} component={SigninScreen} />
+              <Route exact path={["/forgotpassword"]} component={ForgotPassword} />
               <Route exact path={"/users"} component={UsersList} />
               <Route exact path={"/adduser"} component={AddUser} />
               <Route exact path={"/userProfile/:id"} component={UserProfile} />
               <Route exact path={"/importcsv"} component={ImportCSV} />
+              <Route exact path={"/content_cats" } component={Content_CategoryList} />
               <Route exact path={"/contents/:currentPage" } component={ContentList} />
               <Route exact path="/contentdetail/:slug.:id.html" component={ContentDetail}/>
               <Route exact path={"/editContent/:id"} component={EditContent} />
