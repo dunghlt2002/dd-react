@@ -19,6 +19,9 @@ class ForgotPassword extends Component {
       id: null,
       user: "Cheo",
       email: "dunghlt2002@gmail.com", 
+      id_return: null,
+      user_return: null,
+      email_return: null,
       // users_password: "aaa", 
       // users_: "aaa", 
       // users_: "aaa", 
@@ -54,53 +57,71 @@ class ForgotPassword extends Component {
       // users_: this.state.,
       // password: this.state.users_password  // password so bi keyword nen dat ten hoi lon xon
     };
-
-    userDataService.create(data)
+  var id_return;
+  var user_return;
+  var resettoken;
+  userDataService.findByNameEmail(this.state.user, this.state.email)
       .then(response => {
         this.setState({
-          id: response.data.id,
-          user: response.data.user,
-          email: response.data.email,
-          // password: response.data.password,
+          // id_return: response.data[0].id,
+          // user_return: response.data[0].user,
+          // email_return: response.data[0].email,
           submitted: true
         });
-        console.log('new user : ' + JSON.stringify(response.data));
-        this.setState({
-          message: "New user: " + data.user + " has just created sucessfully!",
-        })
+        id_return = response.data.id
+        user_return = response.data.user
+        resettoken = response.data.resettoken
+        console.log('user return : ' + resettoken);
 
-        // Xu ly tiep phan upload file
-        myUtility.uploadFiles("upfileAvatars", this.state.selectedFile);
+        const CLIENT_URL = process.env.REACT_APP_CLIENT_URL
+        // console.log('CLIENT_URL '  + CLIENT_URL);
+
+            // if (this.state.user === this.state.user_return & user_return !== null) {
+              if (this.state.user === user_return ) {
+                console.log('HI user ' + user_return + ". You forgot your pass? " + resettoken);
+                this.setState({
+                  message: "User found! " + data.user,
+                })
+            
+                // http://localhost:3000/updatepassword/25
+                // http://localhost:3000/updatepassword/25
+
+
+                  // mailling
+                  var url_reset = CLIENT_URL + "updatepassword/"  + id_return + "/" + resettoken
+                  console.log('url reset : ' + url_reset);
+                  
+                  const messageHtml =  renderEmail(
+                    <MyEmail name={this.state.user}> 
+                      "Hi user: {this.state.user + ". If you forgot your password, click the link below to reset it. Thank you! DD app team."}
+                      <a style={{ paddingLeft: 10 }}  href={url_reset} >Change new password, click here.!</a>
+                    </MyEmail>
+                  );
+          
+                  axios({
+                      method: "POST", 
+                      url: "http://localhost:8080/sendForgotPassword", 
+                      data: {
+                  name: this.state.user,
+                  email: this.state.email,
+                  messageHtml: messageHtml
+                      }
+                  }).then((response)=>{
+                      if (response.data.msg === 'success'){
+                          alert("Email sent, awesome!"); 
+                          // this.resetForm()
+                      }else if(response.data.msg === 'fail'){
+                          alert("Oops, something went wrong. Try again")
+                      }
+                  })
+            } // xong phan kiem tra user va email
+
+
 
       })
       .catch(e => {
         console.log(e);
       });
-
-
-          // mailling
-            // const messageHtml =  renderEmail(
-            //   <MyEmail name={this.state.user}> 
-            //     "A user name: {this.state.user + " has just created in our system. Thank you for joinging us."}
-            //   </MyEmail>
-            // );
-    
-            // axios({
-            //     method: "POST", 
-            //     url: "http://localhost:8080/send", 
-            //     data: {
-            // name: this.state.user,
-            // email: this.state.email,
-            // messageHtml: messageHtml
-            //     }
-            // }).then((response)=>{
-            //     if (response.data.msg === 'success'){
-            //         alert("Email sent, awesome!"); 
-            //         // this.resetForm()
-            //     }else if(response.data.msg === 'fail'){
-            //         alert("Oops, something went wrong. Try again")
-            //     }
-            // })
 
   }
 
@@ -111,13 +132,14 @@ class ForgotPassword extends Component {
           <div className="form-info">
             <h4>Please check your email to reset passowrd</h4>
             <h6>Do not check email, this function is under construction .... hihihi</h6>
+            {this.state.message}.
 
 
             { this.props.currUser.userInfo ? ( this.props.currUser.userInfo.isadmin === 0 ?
               <button className="btn-block btn-primary" onClick={this.newUser}>
                 Add New User
               </button>
-                  : null ) : <Link to="signin">Sign-in here</Link>
+                  : null ) : <Link to="signin"> Sign-in here</Link>
               }
 
           </div>

@@ -109,7 +109,7 @@ class AddUser extends Component {
       });
 
 
-          // mailling
+          // mailling - tam nghi vi da works great, gui hoai met qua hihihih
             // const messageHtml =  renderEmail(
             //   <MyEmail name={this.state.user}> 
             //     "A user name: {this.state.user + " has just created in our system. Thank you for joinging us."}
@@ -118,7 +118,7 @@ class AddUser extends Component {
     
             // axios({
             //     method: "POST", 
-            //     url: "http://localhost:8080/send", 
+            //     url: "http://localhost:8080/sendAddNewUser", 
             //     data: {
             // name: this.state.user,
             // email: this.state.email,

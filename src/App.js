@@ -11,6 +11,7 @@ import AddUser from "./components/add-user.component";
 import UserProfile from "./components/profile.component";
 import SigninScreen from "./components/signin.component";
 import ForgotPassword from "./components/forgot-password.component";
+import UpdatePassword from "./components/update-password.component";
 import { userLogoutFetch } from './actions/userActions';
 
 import ImportCSV from "./components/import-csv.component";
@@ -90,13 +91,27 @@ class App extends Component {
                   }
                 </a>
                 <ul className="dropdown-content">
-                  <li>
+
+                    <li>
+                      <Link to="/" onClick={this.logoutHandler}>Logout</Link>
+                    </li>
+                    <li>
                     {
                       // this.getUser(this.props.currUser.userInfo.id);
-                     this.props.currUser.userInfo ? <Link to={"/userProfile/" + this.props.currUser.userInfo.id}>Profile: {this.props.currUser.userInfo.user}</Link> : <Link to="/signin">Sign In</Link>
+                     this.props.currUser.userInfo ? 
+                      <Link to={"/userProfile/" + this.props.currUser.userInfo.id}>Profile: {this.props.currUser.userInfo.user}</Link> 
+                      : <Link to="/signin">Sign In</Link>
                     }
-                    <Link to="/" onClick={this.logoutHandler}>Logout</Link>
-                  </li>
+                    </li>
+                    <li>
+                    {
+                      // this.getUser(this.props.currUser.userInfo.id);
+                     this.props.currUser.userInfo ? 
+                      <Link to={"/forgotpassword"}>Reset password: {this.props.currUser.userInfo.user}</Link> 
+                      : null
+                    }
+                    </li>
+                    
                   <li>
                     {/* <Link to="/underconstruction">Orders List</Link> */}
                   </li>
@@ -174,6 +189,7 @@ class App extends Component {
               <Route exact path={"/users"} component={UsersList} />
               <Route exact path={"/adduser"} component={AddUser} />
               <Route exact path={"/userProfile/:id"} component={UserProfile} />
+              <Route exact path={"/updatepassword/:id/:token"} component={UpdatePassword} />
               <Route exact path={"/importcsv"} component={ImportCSV} />
               <Route exact path={"/content_cats" } component={Content_CategoryList} />
               <Route exact path={"/contents/:currentPage" } component={ContentList} />
@@ -211,6 +227,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 // REACT_APP_API_URL = http://localhost:8080/api/
 // REACT_APP_URL = http://localhost:8080/
+// REACT_CLIENT_URL = http://localhost:3080/
 
 // REACT_APP_API_URL = https://dd-dailystock-node.herokuapp.com/api/
 // REACT_APP_URL = https://dd-dailystock-node.herokuapp.com/
+// REACT_CLIENT_URL = https://dd-react.herokuapp.com/

@@ -19,6 +19,11 @@ class userDataService {
       );
   }
 
+  findByNameEmail(user_name, user_email) {
+    console.log('verify 1 user ' + user_name + " - " + user_email);
+    return axios.get(API_URL + `forgotpassword/${user_name}?email_keyword=${user_email}`);
+  }
+
   get(id) {
     console.log('lay 1 user ' + id);
     return axios.get(API_URL + `user/${id}`);
@@ -28,9 +33,18 @@ class userDataService {
     return axios.post(API_URL + `users`, data);
   }
 
+
   update(users_id, data) {
     const userInfo = Cookie.getJSON('userInfo') || null;
     const token = userInfo.token;
+    console.log('user in service:  ' + JSON.stringify(data));
+    return axios.put(API_URL + `users/${users_id}`, data,
+    { headers: {'Authorization': `Bearer ${token}` }}
+    );
+  }
+  updateForgetPassword(users_id, token, data) {
+    // const userInfo = Cookie.getJSON('userInfo') || null;
+    // const token = userInfo.token;
     console.log('user in service:  ' + JSON.stringify(data));
     return axios.put(API_URL + `users/${users_id}`, data,
     { headers: {'Authorization': `Bearer ${token}` }}
