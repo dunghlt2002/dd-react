@@ -100,7 +100,7 @@ class ForgotPassword extends Component {
           
                   axios({
                       method: "POST", 
-                      url: "http://localhost:8080/sendForgotPassword", 
+                      url: CLIENT_URL + "sendForgotPassword", 
                       data: {
                   name: this.state.user,
                   email: this.state.email,
