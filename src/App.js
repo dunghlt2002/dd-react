@@ -227,7 +227,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 // REACT_APP_API_URL = http://localhost:8080/api/
 // REACT_APP_URL = http://localhost:8080/
-// REACT_APP_CLIENT_URL = http://localhost:3080/
+// REACT_APP_CLIENT_URL = http://localhost:3000/
 
 // REACT_APP_API_URL = https://dd-dailystock-node.herokuapp.com/api/
 // REACT_APP_URL = https://dd-dailystock-node.herokuapp.com/
