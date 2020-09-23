@@ -74,7 +74,7 @@ class ForgotPassword extends Component {
         console.log('user return : ' + resettoken);
 
         const CLIENT_URL = process.env.REACT_APP_CLIENT_URL
-        const API_URL = process.env.REACT_APP_API_URL
+        const BACKEND_URL = process.env.REACT_APP_URL
         // console.log('CLIENT_URL '  + CLIENT_URL);
 
             // if (this.state.user === this.state.user_return & user_return !== null) {
@@ -101,7 +101,7 @@ class ForgotPassword extends Component {
           
                   axios({
                       method: "POST", 
-                      url: API_URL + "sendForgotPassword", 
+                      url: BACKEND_URL + "sendForgotPassword", 
                       data: {
                   name: this.state.user,
                   email: this.state.email,
