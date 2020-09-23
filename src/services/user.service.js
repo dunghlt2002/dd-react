@@ -21,7 +21,7 @@ class userDataService {
 
   findByNameEmail(user_name, user_email) {
     console.log('verify 1 user ' + user_name + " - " + user_email);
-    return axios.get(API_URL + `forgotpassword/${user_name}?email_keyword=${user_email}`);
+    return axios.put(API_URL + `forgotpassword/${user_name}?email_keyword=${user_email}`);
   }
 
   get(id) {
